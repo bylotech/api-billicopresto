@@ -11,8 +11,8 @@ class Controllers::FilterService
   end
 
   def filter!
-    @filters = FilterParamsWhitelistService.new(@filter_params, @field_filter_whitelist).call!
-    @filters = FilterParamsMapperService.new(@filters, @filter_params).call!
+    @filters = Controllers::FilterParamsWhitelistService.new(@filter_params, @field_filter_whitelist).call!
+    @filters = Controllers::FilterParamsMapperService.new(@filters, @filter_params).call!
     classic_filter
     custom_filter
     @filtered_collection
