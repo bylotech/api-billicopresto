@@ -108,10 +108,10 @@ Retailer.all.each do |retailer|
 				new_receipt_line = new_receipt.receipt_lines.create!(
 					quantity: random_quantity,
 					item: random_item,
-					unit_price_cent: random_unit_price,
+					unit_price_cents: random_unit_price,
 					taxe_rate: taxe_rate,
 					)
-				ap I18n.t 'seed.receipt_lines.receipt_line_created', retailer_name: new_till.retailer.name, quantity: random_quantity, unit_price: random_unit_price, taxe_rate: taxe_rate, amount_including_taxes: new_receipt_line.amount_including_taxes_cent, product_name: random_item.product.name 
+				ap I18n.t 'seed.receipt_lines.receipt_line_created', retailer_name: new_till.retailer.name, quantity: random_quantity, unit_price: random_unit_price, taxe_rate: taxe_rate, amount_including_taxes: new_receipt_line.amount_including_taxes_cents, product_name: random_item.product.name 
 			end
 		end
 	end

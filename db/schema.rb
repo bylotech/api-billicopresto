@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_28_084155) do
+ActiveRecord::Schema.define(version: 2021_09_08_195626) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,11 +34,11 @@ ActiveRecord::Schema.define(version: 2021_08_28_084155) do
 
   create_table "receipt_lines", force: :cascade do |t|
     t.integer "quantity"
-    t.integer "unit_price_cent", default: 0
+    t.integer "unit_price_cents", default: 0
     t.integer "taxe_rate"
-    t.integer "amount_taxe_cent", default: 0
-    t.integer "amount_excluding_taxes_cent", default: 0
-    t.integer "amount_including_taxes_cent", default: 0
+    t.integer "amount_taxe_cents", default: 0
+    t.integer "amount_excluding_taxes_cents", default: 0
+    t.integer "amount_including_taxes_cents", default: 0
     t.bigint "item_id", null: false
     t.bigint "receipt_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -49,10 +49,10 @@ ActiveRecord::Schema.define(version: 2021_08_28_084155) do
   end
 
   create_table "receipts", force: :cascade do |t|
-    t.integer "amount_excluding_taxes_cent", default: 0
-    t.integer "amount_including_taxes_cent", default: 0
+    t.integer "amount_excluding_taxes_cents", default: 0
+    t.integer "amount_including_taxes_cents", default: 0
     t.integer "taxe_rate"
-    t.integer "amount_taxes_cent", default: 0
+    t.integer "amount_taxes_cents", default: 0
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
