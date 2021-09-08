@@ -14,12 +14,13 @@ RSpec.describe "Receipts", type: :request do
   let(:receipt) {Receipt.create!(till: till, reference: "TEST0001", user: user)}
   let(:carrot) {Product.create!(name: "carrot", kind: "Food and beverages")}
   let(:item_carrot) {Item.create!(product: carrot, retailer: retailer)}
-  let!(:receipt_line) {ReceiptLine.create!(receipt: receipt, quantity: 2, unit_price_cent: 99, taxe_rate: 20, item: item_carrot)}
+  let!(:receipt_line) {ReceiptLine.create!(receipt: receipt, quantity: 2, unit_price_cents: 99, taxe_rate: 20, item: item_carrot)}
   before {sign_in user}
   describe "GET /index" do
     it "returns http success" do
       get "/receipts/index" 
       expect(response).to have_http_status(:success)
+      expect(assigns(:receipts)).to eq(user.receipts)
     end
   end
 
