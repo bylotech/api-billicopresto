@@ -3,7 +3,7 @@ FactoryBot.define do
 
     user {User.last || FactoryBot.create(:user)}
     till {Till.last || FactoryBot.create(:till)}
-
+    date {Date.current}
     sequence :reference do |n|
       zeros = "0000"
       stringified_n = n.to_s
