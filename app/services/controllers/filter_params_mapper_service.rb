@@ -46,7 +46,7 @@ class Controllers::FilterParamsMapperService
   def key_cents(key)
     regex = "(#{SUFFIX_OPERATOR.join('|')})$"
     suffix = key.match(regex)&.to_s
-    suffix ? key.gsub(/#{regex}/, "_cent#{suffix}") : "#{key}_cent"
+    suffix ? key.gsub(/#{regex}/, "_cents#{suffix}") : "#{key}_cents"
   end
 
   def add_operators
