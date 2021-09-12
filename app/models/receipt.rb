@@ -3,20 +3,20 @@ class Receipt < ApplicationRecord
   belongs_to :till
   belongs_to :user
 
-  monetize :amount_excluding_taxes_cent,:amount_including_taxes_cent,:amount_taxes_cent
+  monetize :amount_excluding_taxes_cents,:amount_including_taxes_cents,:amount_taxes_cents
 
   enum status: {active: 0, archived: 1}
 
   after_commit :recompute_amounts!, 
-                if: Proc.new { saved_change_to_amount_excluding_taxes_cent? || saved_change_to_amount_taxes_cent? }
+                if: Proc.new { saved_change_to_amount_excluding_taxes_cents? || saved_change_to_amount_taxes_cents? }
 
   def recompute_amounts!
-    sum_lines_excluding_taxes_cent = receipt_lines.sum(&:amount_excluding_taxes_cent)
-    sum_lines_amount_taxes_cent = receipt_lines.sum(&:amount_taxe_cent)
+    sum_lines_excluding_taxes_cents = receipt_lines.sum(&:amount_excluding_taxes_cents)
+    sum_lines_amount_taxes_cents = receipt_lines.sum(&:amount_taxe_cents)
     update!(
-      amount_excluding_taxes_cent: sum_lines_excluding_taxes_cent, 
-      amount_taxes_cent: sum_lines_amount_taxes_cent, 
-      amount_including_taxes_cent: sum_lines_excluding_taxes_cent + sum_lines_amount_taxes_cent )
+      amount_excluding_taxes_cents: sum_lines_excluding_taxes_cents, 
+      amount_taxes_cents: sum_lines_amount_taxes_cents, 
+      amount_including_taxes_cents: sum_lines_excluding_taxes_cents + sum_lines_amount_taxes_cents )
   end
 
   def available_items
