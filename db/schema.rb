@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 2021_09_08_195626) do
 
   # These are extensions that must be enabled in order to support this database
@@ -30,6 +31,7 @@ ActiveRecord::Schema.define(version: 2021_09_08_195626) do
     t.integer "unit"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "barcode"
   end
 
   create_table "receipt_lines", force: :cascade do |t|
@@ -112,10 +114,37 @@ ActiveRecord::Schema.define(version: 2021_09_08_195626) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "voucher_targets", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "voucher_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.boolean "used"
+    t.datetime "used_at"
+    t.index ["user_id"], name: "index_voucher_targets_on_user_id"
+    t.index ["voucher_id"], name: "index_voucher_targets_on_voucher_id"
+  end
+
+  create_table "vouchers", force: :cascade do |t|
+    t.bigint "retailer_id", null: false
+    t.integer "kind"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.date "start_date"
+    t.date "end_date"
+    t.bigint "item_id", null: false
+    t.index ["item_id"], name: "index_vouchers_on_item_id"
+    t.index ["retailer_id"], name: "index_vouchers_on_retailer_id"
+  end
+
   add_foreign_key "items", "products"
   add_foreign_key "items", "retailers"
   add_foreign_key "receipt_lines", "items"
   add_foreign_key "receipt_lines", "receipts"
   add_foreign_key "receipts", "users"
   add_foreign_key "tills", "retailers"
+  add_foreign_key "voucher_targets", "users"
+  add_foreign_key "voucher_targets", "vouchers"
+  add_foreign_key "vouchers", "items"
+  add_foreign_key "vouchers", "retailers"
 end
