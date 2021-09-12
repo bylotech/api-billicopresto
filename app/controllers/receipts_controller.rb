@@ -1,13 +1,19 @@
 class ReceiptsController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource
-  FIELD_FILTER_WHITELIST = [
-    :date, 
-    :amount_including_taxes, 
-    "till.retailer",
-    "retailer.city",
-    :status
-  ]
+  FIELD_FILTER_WHITELIST = {
+    :date => {
+      operator_available: true, 
+      public_name_operators: I18n.t("receipts.filter.date.operator"), 
+      public_name: I18n.t("receipts.filter.date.public_name")},
+    :amount_including_taxes => {
+      operator_available: true, 
+      public_name_operators: I18n.t("receipts.filter.amount.operator"), 
+      public_name: I18n.t("receipts.filter.amount.public_name")}, 
+    "till.retailer" => {public_name: I18n.t("receipts.filter.retailer.public_name")},
+    "retailer.city" => {public_name: I18n.t("receipts.filter.city.public_name")},
+    :status => {public_name: I18n.t("receipts.filter.status.public_name")}
+  }
 
   def index
     @receipts = @receipts.includes(:till) if filter_params && filter_params["till.retailer"]&.compact_blank.presence
