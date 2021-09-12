@@ -2,26 +2,41 @@ fr:
   receipts:
     filter:
       status:
-        all: Tout
-        active: Actif
-        archived: Archivé
-        by_status: Par status
+        all: tout
+        active: actif
+        archived: archivé
+        by_status: par status
+        public_name: status
       date:
-        on_date: Le
-        by_date: Par date
-        before: Avant le
-        after: Aprés le
+        on_date: le
+        by_date: par date
+        before: avant le
+        after: aprés le
+        equal: le
+        public_name: date
+        operator: 
+          more: après le
+          less: avant le
+
       retailer:
-        by_retailer: Par magasin
-        placeholder: Nom de l'enseigne
+        by_retailer: par magasin
+        placeholder: nom de l'enseigne
+        public_name: magasin
       city:
-        by_city: Par ville
-        placeholder: Nom de la ville
+        by_city: par ville
+        placeholder: nom de la ville
+        equal: à
+        public_name: ville
       amount:
-        by_amount: Par montant
+        by_amount: par montant
         below: INF. A
         above: SUP. A
         equal: EQUAL A
+        public_name: montant
+        operator: 
+          more: SUP. A
+          less: INF. A
+
       submit: APPLIQUER 
 
     
