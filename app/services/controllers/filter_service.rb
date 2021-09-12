@@ -7,7 +7,7 @@ class Controllers::FilterService
     @collection = collection
     @filtered_collection = @collection
     @filter_params = filter_params.respond_to?(:to_unsafe_h) ? filter_params.to_unsafe_h : filter_params
-    @field_filter_whitelist = field_filter_whitelist
+    @field_filter_whitelist = field_filter_whitelist.keys
   end
 
   def filter!
