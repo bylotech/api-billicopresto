@@ -10,7 +10,7 @@ class ReceiptsController < ApplicationController
   ]
 
   def index
-    @receipts = @receipts.includes(:till) if filter_params && filter_params["till.retailer"]&.compact_blank.presence
+    @receipts = @receipts.includes(:till) if filter_params && filter_params["till.retailer"].presence 
     @receipts = @receipts.includes(till: :retailer) if filter_params && filter_params["retailer.city"]
     @receipts = Controllers::FilterService.new(@receipts,FIELD_FILTER_WHITELIST, filter_params).filter! if filter_params
     @receipts_ordered = @receipts.group_by { |t| t.created_at.beginning_of_year } 
