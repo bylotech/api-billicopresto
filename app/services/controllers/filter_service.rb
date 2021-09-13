@@ -7,15 +7,32 @@ class Controllers::FilterService
     @collection = collection
     @filtered_collection = @collection
     @filter_params = filter_params.respond_to?(:to_unsafe_h) ? filter_params.to_unsafe_h : filter_params
-    @field_filter_whitelist = field_filter_whitelist.keys
+    @field_filter_whitelist = field_filter_whitelist
+    @operator_available_fields = field_filter_whitelist.select{|k,v| v[:operator_available]}.keys
   end
 
   def filter!
-    @filters = Controllers::FilterParamsWhitelistService.new(@filter_params, @field_filter_whitelist).call!
+    @filters = Controllers::FilterParamsWhitelistService.new(@filter_params, @field_filter_whitelist.keys).call!
     @filters = Controllers::FilterParamsMapperService.new(@filters, @filter_params).call!
     classic_filter
     custom_filter
     @filtered_collection
+  end
+
+  def list!
+    @filters = Controllers::FilterParamsWhitelistService.new(@filter_params, @field_filter_whitelist.keys).call!
+    @filters = Controllers::FilterParamsMapperService.new(@filters, @filter_params).call!
+    @filters.transform_keys do |key| 
+      regex = /(?<prefix>.+)_(?<suffix>more|less)/
+      key_contain_suffix = key.match?(regex)
+
+      return @field_filter_whitelist.dig(key.to_sym, :public_name) unless key_contain_suffix
+
+      new_key = @field_filter_whitelist.dig(key.match(regex)[:prefix].to_sym, :public_name)
+      operator = @field_filter_whitelist.dig(key.match(regex)[:prefix].to_sym, :public_name_operators, key.match(regex)[:suffix].to_sym)
+      "#{new_key} #{operator}"
+    end
+    
   end
 
   private
@@ -37,16 +54,36 @@ class Controllers::FilterService
   end
 
   def less_filter
-    return unless less_filters = @filters.select{|filter| filter.end_with?("_less")}.presence
+    return unless filters = less_filters.presence
     less_filters.each do |field, value|
       @filtered_collection = @filtered_collection.where("#{field.delete_suffix("_less")} < ?", value)
     end
   end
 
+  def less_filters 
+    @filters.select do |filter| 
+      filter.end_with?("_less") && operator_available_filter?(filter)
+    end
+  end
+
+
   def more_filter
-    return unless more_filters = @filters.select{|filter| filter.end_with?("_more")}.presence
+    return unless filters = more_filters.presence
     more_filters.each do |field, value|
       @filtered_collection = @filtered_collection.where("#{field.delete_suffix("_more")} > ?", value)
     end
   end
+
+  def more_filters 
+    @filters.select do |filter|
+      filter.end_with?("_more") && operator_available_filter?(filter)
+    end
+  end
+
+  def operator_available_filter?(filter)
+    allowed_filter = Controllers::FilterParamsWhitelistService.new(@filter_params, @operator_available_fields).call!
+    allowed_filter = Controllers::FilterParamsMapperService.new(allowed_filter, @filter_params).call!
+    allowed_filter.keys.include?(filter)
+  end
+
 end

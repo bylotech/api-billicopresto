@@ -14,7 +14,7 @@ RSpec.describe "Receipts", type: :request do
   before {sign_in user}
 
 
-  fdescribe "GET /index" do
+  describe "GET /index" do
     it "returns http success" do
       get "/receipts/index" 
       expect(response).to have_http_status(:success)
@@ -41,7 +41,7 @@ RSpec.describe "Receipts", type: :request do
               end
             end
           end
-          context "with operator" do
+          fcontext "with operator" do
             context "less" do
               context "when no receipts have a date less than the filter value" do
                 it "returns nothing" do
@@ -189,6 +189,14 @@ RSpec.describe "Receipts", type: :request do
         context "with the not operator" do
           it "returns the correct receipts" do
             get "/receipts/index", params: { filters: {"till.retailer_operator" => "not", "till.retailer" => another_retailer.id}}
+            expect(response).to have_http_status(:success)
+            expect(assigns(:receipts)).to eq([receipt])
+          end
+        end
+
+        context "when we try to pass a more or less" do
+          it "doesn't break and returns all the receipts" do
+            get "/receipts/index", params: { filters: {"till.retailer_operator" => "more", "till.retailer" => another_retailer.id}}
             expect(response).to have_http_status(:success)
             expect(assigns(:receipts)).to eq([receipt])
           end
