@@ -13,7 +13,7 @@ class Controllers::FilterService
 
   def filter!
     @filters = Controllers::FilterParamsWhitelistService.new(@filter_params, @field_filter_whitelist.keys).call!
-    @filters = Controllers::FilterParamsMapperService.new(@filters, @filter_params).call!
+    @filters = Controllers::FilterParamsMapperService.new(@filters, @filter_params, @field_filter_whitelist).call!
     classic_filter
     custom_filter
     @filtered_collection
@@ -22,7 +22,7 @@ class Controllers::FilterService
   def list!
     @filters = Controllers::FilterParamsWhitelistService.new(@filter_params, @field_filter_whitelist.keys).call!
     @filters = Controllers::FilterParamsMapperService.new(@filters, @filter_params).call!
-    @filters.transform_keys do |key| 
+    @filters.transform_keys do |key|
       regex = /(?<prefix>.+)_(?<suffix>more|less)/
       key_contain_suffix = key.match?(regex)
 
@@ -82,7 +82,7 @@ class Controllers::FilterService
 
   def operator_available_filter?(filter)
     allowed_filter = Controllers::FilterParamsWhitelistService.new(@filter_params, @operator_available_fields).call!
-    allowed_filter = Controllers::FilterParamsMapperService.new(allowed_filter, @filter_params).call!
+    allowed_filter = Controllers::FilterParamsMapperService.new(allowed_filter, @filter_params, @field_filter_whitelist).call!
     allowed_filter.keys.include?(filter)
   end
 
