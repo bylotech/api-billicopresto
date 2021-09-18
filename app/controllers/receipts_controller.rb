@@ -23,11 +23,9 @@ class ReceiptsController < ApplicationController
     @receipts = @receipts.includes(:till) if filter_params && filter_params["till.retailer"].presence 
     @receipts = @receipts.includes(till: :retailer) if filter_params && filter_params["retailer.city"]
 
-    filter_service = Controllers::FilterService.new(@receipts,FIELD_FILTER_WHITELIST, filter_params)
-
-    @receipts = filter_service.filter! if filter_params
+    filter_receipts
     
-      @receipts_ordered = @receipts.group_by { |t| t.created_at.beginning_of_year } 
+    @receipts_ordered = @receipts.group_by { |t| t.created_at.beginning_of_year } 
     @receipts_ordered_month = @receipts.group_by { |t| t.created_at.beginning_of_month } 
   end
 
@@ -46,5 +44,16 @@ class ReceiptsController < ApplicationController
 
   def filter_params
     params[:filters]&.compact_blank
+  end
+
+  def filter_receipts 
+    return unless filter_params
+    filter_service_result = filter_service.filter!
+    @receipts = filter_service_result[:result]
+    @filters_used = filter_service_result[:filters_used]
+  end
+
+  def filter_service
+    Controllers::FilterService.new(@receipts,FIELD_FILTER_WHITELIST, filter_params)
   end
 end
