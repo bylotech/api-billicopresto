@@ -2,17 +2,20 @@ class ReceiptsController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource
   FIELD_FILTER_WHITELIST = {
-    :date => {
+    "date" => {
       operator_available: true, 
       public_name_operators: I18n.t("receipts.filter.date.operator"), 
-      public_name: I18n.t("receipts.filter.date.public_name")},
-    :amount_including_taxes => {
+      public_name: I18n.t("receipts.filter.date.public_name")
+    },
+    "amount_including_taxes" => {
       operator_available: true, 
       public_name_operators: I18n.t("receipts.filter.amount.operator"), 
-      public_name: I18n.t("receipts.filter.amount.public_name")}, 
+      public_name: I18n.t("receipts.filter.amount.public_name"),
+      mapped_field: :amount_including_taxes_cents,
+    }, 
     "till.retailer" => {public_name: I18n.t("receipts.filter.retailer.public_name")},
     "retailer.city" => {public_name: I18n.t("receipts.filter.city.public_name")},
-    :status => {public_name: I18n.t("receipts.filter.status.public_name")}
+    "status" => {public_name: I18n.t("receipts.filter.status.public_name")}
   }
 
   def index
@@ -23,8 +26,8 @@ class ReceiptsController < ApplicationController
     filter_service = Controllers::FilterService.new(@receipts,FIELD_FILTER_WHITELIST, filter_params)
 
     @receipts = filter_service.filter! if filter_params
-    ap @filters = filter_service.list!
-    @receipts_ordered = @receipts.group_by { |t| t.created_at.beginning_of_year } 
+    
+      @receipts_ordered = @receipts.group_by { |t| t.created_at.beginning_of_year } 
     @receipts_ordered_month = @receipts.group_by { |t| t.created_at.beginning_of_month } 
   end
 
