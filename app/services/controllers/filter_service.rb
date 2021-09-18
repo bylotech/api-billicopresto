@@ -9,6 +9,7 @@ class Controllers::FilterService
     @filter_params = filter_params.respond_to?(:to_unsafe_h) ? filter_params.to_unsafe_h : filter_params
     @field_filter_whitelist = field_filter_whitelist
     @operator_available_fields = field_filter_whitelist.select{|k,v| v[:operator_available]}.keys
+    @filter_used = []
   end
 
   def filter!
@@ -16,7 +17,10 @@ class Controllers::FilterService
     @filters = Controllers::FilterParamsMapperService.new(@filters, @filter_params, @field_filter_whitelist).call!
     classic_filter
     custom_filter
-    @filtered_collection
+    result = {
+      result: @filtered_collection,
+      filters_used: @filter_used
+    }
   end
 
   def list!
@@ -46,17 +50,20 @@ class Controllers::FilterService
   def classic_filter
     return unless classic_filters = @filters.reject{|filter| filter.end_with?(*OPERATOR_SUFFIX_WHITELIST)}.presence
     @filtered_collection = @filtered_collection.where(classic_filters)
+    @filter_used.push *classic_filters.map{ |filter, value| {filter => value} }
   end
 
   def not_filter
     return unless not_filters = @filters.select{|filter| filter.end_with?("_not")}.presence
     @filtered_collection = @filtered_collection.where.not(not_filters.transform_keys { |k| k.delete_suffix("_not") })
+    @filter_used.push *not_filters.map{ |not_filter, value| {not_filter => value} }
   end
 
   def less_filter
     return unless filters = less_filters.presence
     less_filters.each do |field, value|
       @filtered_collection = @filtered_collection.where("#{field.delete_suffix("_less")} < ?", value)
+      @filter_used<<{field => value}
     end
   end
 
@@ -71,6 +78,7 @@ class Controllers::FilterService
     return unless filters = more_filters.presence
     more_filters.each do |field, value|
       @filtered_collection = @filtered_collection.where("#{field.delete_suffix("_more")} > ?", value)
+      @filter_used<<{field => value}
     end
   end
 
