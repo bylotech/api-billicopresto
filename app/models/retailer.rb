@@ -6,6 +6,7 @@ class Retailer < ApplicationRecord
 
   has_many :tills
   has_many :items
+  has_many :vouchers
 
   enum brand: [:carrefour_market, :monoprix, :auchan]
   
