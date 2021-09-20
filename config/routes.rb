@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+  resources :vouchers, only: [:index, :show, :create, :filter]
   # root "articles#index"
   root to: 'pages#dashboard'
   get 'receipts/index'
