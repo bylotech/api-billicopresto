@@ -5,9 +5,17 @@ Rails.application.routes.draw do
   get 'receipts/index'
   get 'receipts/index/filter', to: 'receipts#filter'
   get 'receipts/:id', to: 'receipts#show', as: 'receiptshow'
-  devise_for :retailers
+  devise_for :retailers,
+              path: '/retailer',
+              path_names: {sign_in: 'login', sign_up: 'signup', edit: 'profile'},
+              controllers: {
+                sessions: 'retailers/sessions'
+              }
   devise_for :users,
-              path: '',
-              path_names: {sign_in: 'login', sign_up: 'signup', edit: 'profile'}
+              path: '/user',
+              path_names: {sign_in: 'login', sign_up: 'signup', edit: 'profile'},
+              controllers: {
+                sessions: 'users/sessions'
+              }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
