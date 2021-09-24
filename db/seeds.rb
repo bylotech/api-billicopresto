@@ -92,7 +92,7 @@ Retailer.all.each do |retailer|
 	random_number_of_tills = (1..10).to_a.sample
 	random_number_of_tills.times do |n|
 		new_till = retailer.tills.create!(reference: n)
-		random_number_of_receipts = (1..10).to_a.sample
+		random_number_of_receipts = (1..50).to_a.sample
 		random_number_of_receipts.times do
 			random_user = User.all.sample
 			new_receipt = new_till.receipts.create!(reference: next_receipt_reference(retailer), user: random_user, date: rand(1.years.ago..0.years.ago))
@@ -100,8 +100,7 @@ Retailer.all.each do |retailer|
 			random_number_of_lines = (1..10).to_a.sample
 			random_number_of_lines.times do
 				ap I18n.t 'seed.creation_of_one_for', model: ReceiptLine.name, parent_model: new_till.retailer.class.name, parent_model_name: new_till.retailer.name
-				avaialble_items = new_receipt.available_items
-				random_item = avaialble_items.sample
+				random_item = retailer.items.sample
 				random_quantity = (1..10).to_a.sample
 				random_unit_price = (1..100).to_a.sample
 				taxe_rate = 20
@@ -117,6 +116,32 @@ Retailer.all.each do |retailer|
 	end
 end
 
+Retailer.all.each do |retailer|
+	retailer.products.each do |product|
+		item = retailer.items.find_by(product: product)
+		sales_by_product = retailer.bigest_consumer_by_product(product)
+		number_of_customer = sales_by_product.count
+		target_number = number_of_customer > 1 ? number_of_customer - 1 : 1
+		target = sales_by_product.first(target_number)
+
+		target_query = "#{target_number} biggest buyers of #{product.name}"
+		random_start_date = (10..20).to_a.sample.days.ago
+		random_start_date = random_start_date + (1..6).to_a.sample.month
+		ap I18n.t 'seed.creation_of_one_for', model: Voucher.name, parent_model: Retailer.name, parent_model_name: retailer.name 
+		voucher = retailer.vouchers.create!(
+			start_date: random_start_date, 
+			end_date: random_start_date, 
+			item_id: item.id, 
+			target_query: "#{target_number} biggest buyers of #{product.name}")
+		ap I18n.t 'seed.vouchers.voucher_created', retailer_name: retailer.name, start_date: random_start_date, end_date: random_start_date, product_name: product.name, target_query: "#{target_number} biggest buyers of #{product.name}" 
+		
+		target.each do |user| 
+			voucher.voucher_targets.create!(user_id: user[:user_id])
+			ap I18n.t 'seed.voucher_targets.voucher_target_created', customer: "#{User.find(user[:user_id]).first_name} #{User.find(user[:user_id]).last_name}" 
+		end
+	end
+end
+
 ap I18n.t 'seed.seed_result', model: User.name, count: User.all.count
 ap I18n.t 'seed.seed_result', model: Product.name, count: Product.all.count
 ap I18n.t 'seed.seed_result', model: Retailer.name, count: Retailer.all.count
@@ -124,5 +149,7 @@ ap I18n.t 'seed.seed_result', model: Item.name, count: Item.all.count
 ap I18n.t 'seed.seed_result', model: Till.name, count: Till.all.count
 ap I18n.t 'seed.seed_result', model: Receipt.name, count: Receipt.all.count
 ap I18n.t 'seed.seed_result', model: ReceiptLine.name, count: ReceiptLine.all.count
+ap I18n.t 'seed.seed_result', model: Voucher.name, count: Voucher.all.count
+ap I18n.t 'seed.seed_result', model: VoucherTarget.name, count: VoucherTarget.all.count
 
 
