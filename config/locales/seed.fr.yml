@@ -19,3 +19,7 @@ fr:
       product_created: "Produit créé, name => %{name}, kind => %{kind} "
     items:
       item_created: "Item créé pour le magasin %{retailer_name}, product => %{product_name}"
+    vouchers: 
+      voucher_created: "Reduction créée pour le magasin %{retailer_name}, product => %{product_name}, filtre : %{target_query}, start_date : %{start_date}, end_date : %{end_date}"
+    voucher_targets:
+      voucher_target: "Bon de reduction individuel créée pour %{customer}"
