@@ -102,7 +102,7 @@ Retailer.all.each do |retailer|
 				ap I18n.t 'seed.creation_of_one_for', model: ReceiptLine.name, parent_model: new_till.retailer.class.name, parent_model_name: new_till.retailer.name
 				random_item = retailer.items.sample
 				random_quantity = (1..10).to_a.sample
-				random_unit_price = (1..100).to_a.sample
+				random_unit_price = (100..500).to_a.sample
 				taxe_rate = 20
 				new_receipt_line = new_receipt.receipt_lines.create!(
 					quantity: random_quantity,
@@ -127,9 +127,11 @@ Retailer.all.each do |retailer|
 		target_query = "#{target_number} biggest buyers of #{product.name}"
 		random_start_date = (10..20).to_a.sample.days.ago
 		random_start_date = random_start_date + (1..6).to_a.sample.month
+		random_discount = (9..99).to_a.sample
 		ap I18n.t 'seed.creation_of_one_for', model: Voucher.name, parent_model: Retailer.name, parent_model_name: retailer.name 
 		voucher = retailer.vouchers.create!(
 			start_date: random_start_date, 
+			discount_cents: random_discount,
 			end_date: random_start_date, 
 			item_id: item.id, 
 			target_query: "#{target_number} biggest buyers of #{product.name}")
