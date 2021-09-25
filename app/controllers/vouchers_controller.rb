@@ -8,8 +8,10 @@ class VouchersController < ApplicationController
 
   def index
     @vouchers =  Controllers::FilterService.new(@vouchers,FIELD_FILTER_WHITELIST, filter_params).filter! if filter_params
+  end
 
-
+  def new 
+    @product = current_retailer.products
   end
 
   def show
