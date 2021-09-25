@@ -1,0 +1,15 @@
+<h1>Vouchers#new</h1>
+
+
+<div class="filter-form-wrapper">
+  <%= form_with url: "/vouchers", method: :post, class: 'voucher_form' do |form| %>
+    
+    <%= form.date_field :start_date, class: "pt-3" %>
+    <%= form.date_field :end_date, class: "pt-3" %>
+    
+    
+    <%= form.submit I18n.t('receipts.filter.submit'), class: "mb-5 btn-filter-submit"%>
+
+  <% end %>
+  
+</div>
