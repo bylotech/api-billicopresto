@@ -1,0 +1,27 @@
+fr:
+  receipts:
+    filter:
+      status:
+        all: Tout
+        active: Actif
+        archived: Archivé
+        by_status: Par status
+      date:
+        on_date: Le
+        by_date: Par date
+        before: Avant le
+        after: Aprés le
+      retailer:
+        by_retailer: Par magasin
+        placeholder: Nom de l'enseigne
+      city:
+        by_city: Par ville
+        placeholder: Nom de la ville
+      amount:
+        by_amount: Par montant
+        below: INF. A
+        above: SUP. A
+        equal: EQUAL A
+      submit: APPLIQUER 
+
+    
