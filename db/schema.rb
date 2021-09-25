@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_24_185607) do
+
+ActiveRecord::Schema.define(version: 2021_09_25_210757) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -134,6 +136,7 @@ ActiveRecord::Schema.define(version: 2021_09_24_185607) do
     t.bigint "item_id", null: false
     t.string "target_query"
     t.integer "discount_cents", default: 0
+    t.integer "status", default: 0
     t.index ["item_id"], name: "index_vouchers_on_item_id"
     t.index ["retailer_id"], name: "index_vouchers_on_retailer_id"
   end

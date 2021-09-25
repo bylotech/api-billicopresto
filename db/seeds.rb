@@ -126,13 +126,13 @@ Retailer.all.each do |retailer|
 
 		target_query = "#{target_number} biggest buyers of #{product.name}"
 		random_start_date = (10..20).to_a.sample.days.ago
-		random_start_date = random_start_date + (1..6).to_a.sample.month
+		random_end_date = random_start_date + (1..6).to_a.sample.month
 		random_discount = (9..99).to_a.sample
 		ap I18n.t 'seed.creation_of_one_for', model: Voucher.name, parent_model: Retailer.name, parent_model_name: retailer.name 
 		voucher = retailer.vouchers.create!(
 			start_date: random_start_date, 
 			discount_cents: random_discount,
-			end_date: random_start_date, 
+			end_date: random_end_date, 
 			item_id: item.id, 
 			target_query: "#{target_number} biggest buyers of #{product.name}")
 		ap I18n.t 'seed.vouchers.voucher_created', retailer_name: retailer.name, start_date: random_start_date, end_date: random_start_date, product_name: product.name, target_query: "#{target_number} biggest buyers of #{product.name}" 
