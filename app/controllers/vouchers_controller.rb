@@ -11,7 +11,12 @@ class VouchersController < ApplicationController
   end
 
   def new 
-    @product = current_retailer.products
+    @products = current_retailer.products
+    @product_sold = Product.joins(items: :receipt_lines).where(items: {retailer: current_retailer}).distinct
+  end
+
+  def create
+    byebug
   end
 
   def show
@@ -23,5 +28,18 @@ class VouchersController < ApplicationController
   
   def filter_params
     params[:filters]&.compact_blank
+  end
+
+  def create_params
+    params.permit(**create_params_schema)
+  end
+
+  def create_params_schema
+    {
+      create: [
+        voucher: [:start_date, :end_date, :discount, :product], 
+        target: [:number, :order, :product]
+      ]
+    }
   end
 end
