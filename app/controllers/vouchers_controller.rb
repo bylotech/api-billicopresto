@@ -16,7 +16,7 @@ class VouchersController < ApplicationController
   end
 
   def create
-    byebug
+    
   end
 
   def show
