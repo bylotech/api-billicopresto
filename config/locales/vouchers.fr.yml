@@ -4,5 +4,12 @@ fr:
     end_date: date de fin
     product: produit concerné
     status: status
+    submit: créér
+    discount: montant de la réduction
+    consumers :
+      consumer: consomateur
+      biggest: plus grand
+      smallest: plus petit
+      of: de
 
     
