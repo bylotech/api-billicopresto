@@ -1,14 +1,28 @@
 <h1>Vouchers#new</h1>
 
 
-<div class="filter-form-wrapper">
+<div >
   <%= form_with url: "/vouchers", method: :post, class: 'voucher_form' do |form| %>
+    <!-- AMOUNT -->
     
-    <%= form.date_field :start_date, class: "pt-3" %>
-    <%= form.date_field :end_date, class: "pt-3" %>
-    
-    
-    <%= form.submit I18n.t('receipts.filter.submit'), class: "mb-5 btn-filter-submit"%>
+    <%= form.label :start_date, I18n.t('vouchers.start_date') %>
+    <%= form.date_field "create[voucher][start_date]" , id: :start_date, required: true%>
+    <%= form.label :end_date, I18n.t('vouchers.end_date') %>
+    <%= form.date_field "create[voucher][end_date]" , id: :end_date , required: true%>
+    <%= form.label :product, I18n.t('vouchers.product') %>
+    <%= form.collection_radio_buttons "create[voucher][product]", @products, :id, :name , include_hidden: false, id: :product , required: true%>
+    <%= form.label :discount, I18n.t('vouchers.discount') %>
+    <%= form.number_field "create[voucher][discount]", placeholder: '0.00', min: 0.01, step: 0.01 , id: :discount%>
+    <!-- TARGET -->
+    <%= form.label :number, I18n.t('vouchers.discount') %>
+    <%= form.number_field "create[target][number]", placeholder: '0.00' , required: true%>
+    <%= form.label :desc, I18n.t('vouhers.consumers.biggest') %>
+    <input type="radio" value="DESC" name="create[target][order]" id="desc" , required: true>
+    <%= form.label :asc, I18n.t('vouhers.consumers.biggest') %>
+    <input type="radio" value="asc" name="create[target][order]" id="desc", required: true >
+    <%= form.label :target_product, I18n.t('vouchers.discount') %>
+    <%= form.collection_radio_buttons "create[target][product]", @product_sold, :id, :name , include_hidden: false, id: :target_product , required: true%>
+    <%= form.submit I18n.t('vouchers.submit')%>
 
   <% end %>
   
