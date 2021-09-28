@@ -10,16 +10,37 @@
 
       <!-- METTRE EN CONDITION : si le user != retailer -->
       <% if resource_name != :retailer %>
+
         <%= f.input :first_name,
                     required: true,
                     autofocus: true,
                     placeholder: 'prénom',
                     input_html: { autocomplete: "first name" }%>
+
         <%= f.input :last_name,
                     required: true,
                     autofocus: true,
                     placeholder: 'nom',
-                    input_html: { autocomplete: "last name" }%>
+                    input_html: { autocomplete: "last name" }%>        
+
+        <div class="category-wrapper-gender">
+
+            <div class="filter-btn category-item" data-children-count="1">
+              <input type="radio" value="female" name="user[gender]" id="gender_female" class="category-selector gender form-check-input radio_buttons required">
+              <label class="gender checkbox form-check-label collection_radio_buttons" for="gender_female">
+                <p>Femme</p>
+              </label>
+            </div>
+
+            <div class="filter-btn category-item" data-children-count="1">
+              <input type="radio" value="male" name="user[gender]" id="gender_male" class="category-selector gender form-check-input radio_buttons required">
+              <label class="gender checkbox form-check-label collection_radio_buttons" for="gender_male">
+                <p>Homme</p>
+              </label>
+            </div>
+        
+        </div>
+
       <% end %>
       <!-- GLOBAL -->
 

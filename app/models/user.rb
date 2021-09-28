@@ -9,4 +9,5 @@ class User < ApplicationRecord
   def age
     Date.current.year - birthday.year
   end
+
 end

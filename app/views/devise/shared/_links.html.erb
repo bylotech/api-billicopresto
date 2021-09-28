@@ -2,7 +2,7 @@
   <%= link_to "J'ai déjà un compte", new_session_path(resource_name) %>
 <% end %>
 
-<%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+<%- if devise_mapping.registerable? && controller_name != 'registrations' && resource_name != :retailer%>
   <%= link_to "Sign up |", new_registration_path(resource_name) %>
 <% end %>
 
