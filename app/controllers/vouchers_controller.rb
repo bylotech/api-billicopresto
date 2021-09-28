@@ -1,6 +1,8 @@
 class VouchersController < ApplicationController
   before_action :authenticate_retailer!
-  load_and_authorize_resource
+  
+  load_and_authorize_resource :except => [:create]
+  authorize_resource only: :create
 
   FIELD_FILTER_WHITELIST = [
     
@@ -16,7 +18,9 @@ class VouchersController < ApplicationController
   end
 
   def create
-    
+    mapped_params = map_money_field(create_params.dig(:create, :voucher))
+    byebug
+    Voucher.create!(mapped_params)
   end
 
   def show
@@ -42,4 +46,20 @@ class VouchersController < ApplicationController
       ]
     }
   end
+
+  def map_money_field(params)
+    model_attributes = Voucher.new.attributes.keys
+
+    return params unless money_params = params.select do|k,v| 
+      model_attributes.include?("#{k}_cents")
+    end
+
+    money_params.each do |key, value|
+      params["#{key}_cents"] = value.to_f*100
+      params.delete(key)
+    end
+
+    params 
+  end
+
 end

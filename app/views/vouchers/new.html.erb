@@ -9,8 +9,8 @@
     <%= form.date_field "create[voucher][start_date]" , id: :start_date, required: true%>
     <%= form.label :end_date, I18n.t('vouchers.end_date') %>
     <%= form.date_field "create[voucher][end_date]" , id: :end_date , required: true%>
-    <%= form.label :product, I18n.t('vouchers.product') %>
-    <%= form.collection_radio_buttons "create[voucher][product]", @products, :id, :name , include_hidden: false, id: :product , required: true%>
+    <%= form.label :product_id, I18n.t('vouchers.product') %>
+    <%= form.collection_radio_buttons "create[voucher][product_id]", @products, :id, :name , include_hidden: false, id: :product , required: true%>
     <%= form.label :discount, I18n.t('vouchers.discount') %>
     <%= form.number_field "create[voucher][discount]", placeholder: '0.00', min: 0.01, step: 0.01 , id: :discount%>
     <!-- TARGET -->
@@ -21,7 +21,7 @@
     <%= form.label :asc, I18n.t('vouhers.consumers.biggest') %>
     <input type="radio" value="asc" name="create[target][order]" id="desc", required: true >
     <%= form.label :target_product, I18n.t('vouchers.discount') %>
-    <%= form.collection_radio_buttons "create[target][product]", @product_sold, :id, :name , include_hidden: false, id: :target_product , required: true%>
+    <%= form.collection_radio_buttons "create[target][product_id]", @product_sold, :id, :name , include_hidden: false, id: :target_product , required: true%>
     <%= form.submit I18n.t('vouchers.submit')%>
 
   <% end %>
