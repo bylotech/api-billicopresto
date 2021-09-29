@@ -35,29 +35,47 @@
 			</div>
 		</div>
 
-		<%= 
-			def terre_lune_width
+		<%  def terre_lune_width(ticket_actif)
+
 				terre_lune = 38440000000
-				ticket_moyen = 30
-
-				p ticket_moyen
-
-				ticket_actif = current_retailer.receipts.length
+				ticket_moyen = 40
 
 				ticket_length = (ticket_actif * ticket_moyen)
 
-				rapport = (ticket_length / terre_lune)
-			end 
+				return rapport = (ticket_length*100).fdiv(terre_lune)
+				
+			end
+
+			def width
+
+				size = (60 * terre_lune_width(current_retailer.receipts.length)).round
+
+				if size < 10
+					return "1vw"
+				elsif size > 60
+					return "60vw"
+				else 
+					return size.to_s + "vw"
+				end 
+
+			end
+
 		%>
+		
+		<div class="terre-lune">
 
-		<p style="padding: 140px; grid-column: 2; "> <%= terre_lune_width %> </p>
+			<p class="pb-3"><strong> Bravo ! </strong><%= current_retailer.name %>, <%= current_retailer.city %> a économisé en moyenne <%= (40 * current_retailer.receipts.length).fdiv(1000) %> km de papier, <br> soit <%= terre_lune_width(current_retailer.receipts.length).round(2) if terre_lune_width(current_retailer.receipts.length).round(2) > 0.1 %> <%= "moins de 0.1" if terre_lune_width(current_retailer.receipts.length).round(2) <= 0.1 %> % de la distance Terre-Lune. </p>
+			<div class="terre-lune-wrapper d-flex">
 
-		<div class="terre-lune d-flex">
-			<div class="d-flex terre-line">
-				<div class="terre"></div>
-				<div class="line"><hr></div>
+				<div class="d-flex terre-line">
+					<div class="terre"></div>
+					<div class="line"><hr style="width: <%= width %>"></div>
+					<div class="line"><hr style="width: 60vw; opacity: 0.2 !important"></div>
+				</div>
+
+				<div class="lune"></div>
+
 			</div>
-			<div class="lune"></div>
 		</div>
 
 	</div>
