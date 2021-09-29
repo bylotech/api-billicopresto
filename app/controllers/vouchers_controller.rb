@@ -18,9 +18,9 @@ class VouchersController < ApplicationController
   end
 
   def create
-    mapped_params = map_money_field(create_params.dig(:create, :voucher))
-    byebug
-    Voucher.create!(mapped_params)
+    create_voucher_params = create_params.dig(:create, :voucher)
+    mapped_params = create_params_mapper(create_voucher_params)
+    current_retailer.vouchers.create!(mapped_params)
   end
 
   def show
@@ -41,10 +41,22 @@ class VouchersController < ApplicationController
   def create_params_schema
     {
       create: [
-        voucher: [:start_date, :end_date, :discount, :product], 
+        voucher: [:start_date, :end_date, :discount, :product_id], 
         target: [:number, :order, :product]
       ]
     }
+  end
+
+  def create_params_mapper(create_voucher_params)
+    mapped_params = map_money_field(create_voucher_params)
+    mapped_params = convert_product_into_item(mapped_params)
+  end
+
+  def convert_product_into_item(params)
+    item = current_retailer.items.find_by(product_id: params[:product_id])
+    params[:item_id] = item.id
+    params.delete(:product_id)
+    params
   end
 
   def map_money_field(params)
@@ -55,7 +67,7 @@ class VouchersController < ApplicationController
     end
 
     money_params.each do |key, value|
-      params["#{key}_cents"] = value.to_f*100
+      params["#{key}_cents"] = value.to_f*100.to_i
       params.delete(key)
     end
 
