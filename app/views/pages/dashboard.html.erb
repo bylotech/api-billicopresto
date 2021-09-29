@@ -2,19 +2,62 @@
 	
 	<div class="home-organizer">
 
+		<div class="navbar-retailer d-flex">
+			<div class="navbar-left d-flex">
+			<%= image_tag "logo-bylo-w.svg", alt: "bylo logo", class: "logo-retailer"%>
+			</div>
+			<div class="navbar-right d-flex">
+				<%= mail_to "bylo.developpers@gmail.com", "Besoin d'assistance ?", style: "z-index: 1000; font-size: 12px;"  %>
+			</div>
+		</div>
+
 		<div class="retailler-home-wrapper">
 			<div class="retailler-home-info text-center align-middle">
 				<p class="number-stat"> <%= current_retailer.tills.length %> </p> 
 				<p> caisses en activité</p>
+				<%= link_to vouchers_path do %>
+					<p class="see-more"> Voir plus <i class="fas fa-chevron-right"></i> </p>
+				<% end %>
 			</div>
 			<div class="retailler-home-info text-center align-middle">
 				<p class="number-stat"> <%= current_retailer.receipts.length %> </p> 
 				<p> tickets de caisse actifs</p>
+				<%= link_to vouchers_path do %>
+					<p class="see-more"> Voir plus <i class="fas fa-chevron-right"></i> </p>
+				<% end %>
 			</div>
 			<div class="retailler-home-info text-center align-middle">
 				<p class="number-stat"> <%= current_retailer.vouchers.length %> </p> 
 				<p> bons de réduction actifs </p>
+				<%= link_to vouchers_path do %>
+					<p class="see-more"> Voir plus <i class="fas fa-chevron-right"></i> </p>
+				<% end %>
 			</div>
+		</div>
+
+		<%= 
+			def terre_lune_width
+				terre_lune = 38440000000
+				ticket_moyen = 30
+
+				p ticket_moyen
+
+				ticket_actif = current_retailer.receipts.length
+
+				ticket_length = (ticket_actif * ticket_moyen)
+
+				rapport = (ticket_length / terre_lune)
+			end 
+		%>
+
+		<p style="padding: 140px; grid-column: 2; "> <%= terre_lune_width %> </p>
+
+		<div class="terre-lune d-flex">
+			<div class="d-flex terre-line">
+				<div class="terre"></div>
+				<div class="line"><hr></div>
+			</div>
+			<div class="lune"></div>
 		</div>
 
 	</div>
