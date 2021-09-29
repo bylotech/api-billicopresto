@@ -3,8 +3,8 @@
       	'display: none !important'
       elsif params[:action] == 'home'
         'display: flex !important'
-      elsif params[:action] == 'index' && current_retailer
-        'display: flex !important'
+      # elsif params[:action] == 'index' && current_retailer
+      #   'display: flex !important'
       elsif user_signed_in? 
         'display: flex !important'
       else

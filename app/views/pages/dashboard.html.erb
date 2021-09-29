@@ -1,35 +1,19 @@
 <% if current_retailer %>
+	
+	<div class="home-organizer">
 
-	<div class="profile-wrapper col-lg-6" style="margin: 20vh auto;">
-
-		<div class="profile">
-			<i class="far fa-user"></i>
-			<% if current_retailer.name != nil %>
-			<h2><%= current_retailer.name %> </h2>
-			<% end %>
-		</div>
-
-		<div class="button-group">
-			<div class="button">
-				<%= link_to "Compléter mon profil", edit_user_registration_path %>
+		<div class="retailler-home-wrapper">
+			<div class="retailler-home-info text-center align-middle">
+				<p class="number-stat"> <%= current_retailer.tills.length %> </p> 
+				<p> caisses en activité</p>
 			</div>
-			<div class="button">
-				<p>Gérer mes moyens de paiement</p>
+			<div class="retailler-home-info text-center align-middle">
+				<p class="number-stat"> <%= current_retailer.receipts.length %> </p> 
+				<p> tickets de caisse actifs</p>
 			</div>
-			<div class="button">
-				<p>Ajouter et gérer un compte</p>
-			</div>
-			<div class="button">
-				<p>Préférences</p>
-			</div>
-			<div class="button">
-				<p>Sécurité</p>
-			</div>
-		</div>
-
-		<div class="button-group">
-			<div class="button">
-				<%= link_to "Déconnexion", destroy_user_session_path, method: :delete, class: "btn-red" %>
+			<div class="retailler-home-info text-center align-middle">
+				<p class="number-stat"> <%= current_retailer.vouchers.length %> </p> 
+				<p> bons de réduction actifs </p>
 			</div>
 		</div>
 
