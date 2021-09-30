@@ -2,19 +2,13 @@
 	
 	<div class="home-organizer">
 
-		<div class="navbar-retailer d-flex">
-			<div class="navbar-left d-flex">
-			<%= image_tag "logo-bylo-w.svg", alt: "bylo logo", class: "logo-retailer"%>
-			</div>
-			<div class="navbar-right d-flex">
-				<%= mail_to "bylo.developpers@gmail.com", "Besoin d'assistance ?", style: "z-index: 1000; font-size: 12px;"  %>
-			</div>
-		</div>
 
-		<div class="retailler-home-wrapper">
+
+		<div class="retailler-home-wrapper mx-5">
 			<div class="retailler-home-info text-center align-middle">
 				<p class="number-stat"> <%= current_retailer.tills.length %> </p> 
 				<p> caisses en activité</p>
+				<p class="description-home-card pt-3 pb-5 px-5"> Gérez vos caisses depuis notre plateforme, générez et imprimez des QR codes pour les deployer en boutique.</p>
 				<%= link_to vouchers_path do %>
 					<p class="see-more"> Voir plus <i class="fas fa-chevron-right"></i> </p>
 				<% end %>
@@ -22,6 +16,7 @@
 			<div class="retailler-home-info text-center align-middle">
 				<p class="number-stat"> <%= current_retailer.receipts.length %> </p> 
 				<p> tickets de caisse actifs</p>
+				<p class="description-home-card pt-3 pb-5 px-5"> Consultez vos tickets de caisses actifs (voir Préférences) et ayez une vue d'ensemble sur la consommation de vos clients. </p>
 				<%= link_to vouchers_path do %>
 					<p class="see-more"> Voir plus <i class="fas fa-chevron-right"></i> </p>
 				<% end %>
@@ -29,6 +24,7 @@
 			<div class="retailler-home-info text-center align-middle">
 				<p class="number-stat"> <%= current_retailer.vouchers.length %> </p> 
 				<p> bons de réduction actifs </p>
+				<p class="description-home-card pt-3 pb-5 px-5"> Proposez à votre clientèle des bons de réduction presonnalisés et consultez les statistiques des précédentes promotions.</p>
 				<%= link_to vouchers_path do %>
 					<p class="see-more"> Voir plus <i class="fas fa-chevron-right"></i> </p>
 				<% end %>
@@ -62,10 +58,10 @@
 
 		%>
 		
-		<div class="terre-lune">
+		<div class="terre-lune mx-5 mt-5">
 
-			<p class="pb-3"><strong> Bravo ! </strong><%= current_retailer.name %>, <%= current_retailer.city %> a économisé en moyenne <%= (40 * current_retailer.receipts.length).fdiv(1000) %> km de papier, <br> soit <%= terre_lune_width(current_retailer.receipts.length).round(2) if terre_lune_width(current_retailer.receipts.length).round(2) > 0.1 %> <%= "moins de 0.1" if terre_lune_width(current_retailer.receipts.length).round(2) <= 0.1 %> % de la distance Terre-Lune. </p>
-			<div class="terre-lune-wrapper d-flex">
+			<p class="py-3"><strong> Bravo ! </strong><%= current_retailer.name %>, <%= current_retailer.city %> a économisé en moyenne <%= (40 * current_retailer.receipts.length).fdiv(1000) %> km de papier, <br> soit <%= terre_lune_width(current_retailer.receipts.length).round(2) if terre_lune_width(current_retailer.receipts.length).round(2) > 0.1 %> <%= "moins de 0.1" if terre_lune_width(current_retailer.receipts.length).round(2) <= 0.1 %> % de la distance Terre-Lune. </p>
+			<div class="terre-lune-wrapper d-flex pt-3">
 
 				<div class="d-flex terre-line">
 					<div class="terre"></div>

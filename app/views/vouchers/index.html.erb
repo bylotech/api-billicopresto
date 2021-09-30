@@ -1,22 +1,46 @@
-<%= link_to "Create bon de reduction", new_voucher_path %>
+<div class="home-organizer">
 
-<% if @vouchers.length == 0 %>
+      <%= link_to "Create bon de reduction", new_voucher_path %>
 
-  <p class="p-3 text-center" style="color: grey; border-bottom: 1px solid lightgrey">You have no voucher yet</p>
+      <% if @vouchers.length == 0 %>
 
-<% else %>
+        <p class="py-3 text-center" style="color: grey; border-bottom: 1px solid lightgrey">You have no voucher yet</p>
 
-  <div class="col-lg-6">
-  	<% @vouchers.each do |voucher| %>
-      <%= link_to voucher_path(voucher) do %>
-        <div class="card receipt-info">
-          <p> <%= "#{I18n.t "vouchers.start_date"} : #{voucher.start_date.strftime("%d.%m.%Y")}" %></p>
-          <p> <%= "#{I18n.t "vouchers.end_date"} : #{voucher.end_date.strftime("%d.%m.%Y")}" %></p>
-          <p> <%= "#{I18n.t "vouchers.product"} : #{voucher.product.name}" %></p>
-          <p> <%= "#{I18n.t "vouchers.status"} : #{voucher.status}" %></p>
-        </div>
+      <% else %>
+          <div class="retailler-vouchers-wrapper mx-5  mb-5">
+          	<% @vouchers.each do |voucher| %>
+
+
+
+              <%= link_to voucher_path(voucher) do %>
+                <div class="retailler-vouchers-info align-middle d-flex">
+
+                  <div class="voucher-left">
+                    <% if voucher.product.kind == "Food and beverages" %>
+                      <%= image_tag "grocery.svg", alt: "fb", class: "pb-3" %>
+                    <% elsif voucher.product.kind == "Health and beauty" %>
+                      <%= image_tag "shampoo.svg", alt: "hb", class: "pb-3" %>
+                    <% else %> 
+                      <%= image_tag "house.svg", alt: "hl", class: "pb-3" %>
+                    <% end %> 
+                  </div>
+                  <div class="voucher-right p-3 d-flex flex-column justify-content-between">
+                    <div class="date-voucher">
+                      <p> <%= voucher.start_date.strftime("%d.%m.%Y") %> - <%= voucher.end_date.strftime("%d.%m.%Y") %></p>
+                      <p> <strong><%= (voucher.end_date - Date.current).to_i %> jours restants</strong></p>
+                      
+                    </div>
+                    <p> <strong style="font-size: 16px;"> <%= "- 0,#{voucher.discount_cents} €" %> </strong> sur <span style="text-transform: uppercase;"> <%= voucher.product.name %> </span></p>
+                  </div>
+                  <% if voucher.status == "active" %>
+                      <p class="active-tag">Active</p>
+                  <% end %>
+                </div>
+              <% end %>
+          	<% end %>
+          </div>
       <% end %>
-  	<% end %>
-  </div>
 
-<% end %>
+    
+
+</div>
