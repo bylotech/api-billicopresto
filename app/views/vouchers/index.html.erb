@@ -1,21 +1,17 @@
 <div class="home-organizer">
 
-      <%= link_to "Create bon de reduction", new_voucher_path %>
-
       <% if @vouchers.length == 0 %>
 
         <p class="py-3 text-center" style="color: grey; border-bottom: 1px solid lightgrey">You have no voucher yet</p>
 
       <% else %>
-          <div class="retailler-vouchers-wrapper mx-5  mb-5">
+          <div class="retailler-vouchers-wrapper mx-5 mb-5 pb-5">
           	<% @vouchers.each do |voucher| %>
-
-
 
               <%= link_to voucher_path(voucher) do %>
                 <div class="retailler-vouchers-info align-middle d-flex">
 
-                  <div class="voucher-left">
+                  <div class="voucher-left" style="<%= "background-color: rgba(224, 82, 63, .7)" if voucher.product.kind == "Food and beverages"%> <%= "background-color: rgba(34, 133, 214, .7)" if voucher.product.kind == "Health and beauty"%> <%= "background-color: rgba(99, 168, 88, .7)" if voucher.product.kind == "Home and lifestyle"%>">
                     <% if voucher.product.kind == "Food and beverages" %>
                       <%= image_tag "grocery.svg", alt: "fb", class: "pb-3" %>
                     <% elsif voucher.product.kind == "Health and beauty" %>
@@ -40,7 +36,5 @@
           	<% end %>
           </div>
       <% end %>
-
-    
 
 </div>

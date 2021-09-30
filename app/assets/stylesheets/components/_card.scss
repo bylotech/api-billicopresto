@@ -53,7 +53,7 @@
 .home-organizer {
 	display: grid;
 	grid-template-columns: 1fr 3fr;
-	    height: 90vh;
+	    //height: 90vh;
 }
 
 .retailler-home-wrapper {
@@ -104,6 +104,7 @@
 .see-more {
 	font-size: 10px !important;
 	text-transform: uppercase;
+	padding-bottom: 70px;
 	& i {
 		font-size: 10px !important;
 		padding-left: 3px;
@@ -201,7 +202,7 @@ color:#ffffff;
 	& .voucher-left {
 		box-shadow: 5px 0px 20px rgba(0, 0, 0, .2);
 		border-right: 1px solid whitesmoke;
-		background: rgba(245, 245, 245, 1);
+		//background: rgba(245, 245, 245, 1);
 	    padding: 20px !important;
 	}
 	& p.active-tag {
@@ -216,3 +217,37 @@ color:#ffffff;
 	}
 }
 
+
+//////// RETAILER SHOW VOUCHER /////////
+
+.retailler-show-wrapper {
+	grid-column: 2;
+	display: grid;
+	grid-gap: 30px;
+	grid-template-columns: 1fr 1fr 1fr;
+}
+
+.retailler-show-info {
+	padding: 40px 0 40px 0;
+	background: rgba(245, 245, 245, .2);
+	box-shadow: 0px 0px 50px 0px rgba(0, 0, 0, .2);
+	border-radius: 10px;
+	transition: background 0.2s ease-in-out;
+	& p {
+		color: white;
+		font-size: 12px;
+		transition: color 0.2s ease-in-out;
+	}
+	& p.number-detail {
+		font-size: 46px;
+	}
+	&:hover {
+		background: rgba(245, 245, 245, .9);
+		& p {
+			color: $blue;
+		}
+	}
+	& img {
+		    height: 70px;
+	}
+}

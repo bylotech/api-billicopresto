@@ -33,6 +33,8 @@
             height: 100vh; width: 100.2vw !important; overflow: hidden;" 
         elsif params[:action] == 'index' && current_retailer
           "background: #1c2edf" 
+        elsif params[:action] == 'show' && current_retailer
+          "background: #1c2edf" 
         else
           'background-color: whitesmoke;'
         end 
