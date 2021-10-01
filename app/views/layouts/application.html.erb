@@ -26,6 +26,8 @@
             background-size: 500vw 200vh;
             animation: gradient 35s ease infinite;
             height: 100vh; width: 100.2vw !important; overflow: hidden;" 
+        elsif params[:action] == 'index' && current_retailer
+          "background: #1c2edf" 
         else
           'background-color: whitesmoke;'
         end 

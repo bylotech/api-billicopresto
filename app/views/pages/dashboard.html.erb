@@ -1,34 +1,38 @@
-<% if current_retailer != nil %>
+<% if current_retailer %>
 
-	<div class="profile">
-		<i class="far fa-user"></i>
-		<% if current_retailer.name != nil %>
-		<h2><%= current_retailer.name %> </h2>
-		<% end %>
-	</div>
+	<div class="profile-wrapper col-lg-6" style="margin: 20vh auto;">
 
-	<div class="button-group">
-		<div class="button">
-			<%= link_to "Compléter mon profil", edit_user_registration_path %>
+		<div class="profile">
+			<i class="far fa-user"></i>
+			<% if current_retailer.name != nil %>
+			<h2><%= current_retailer.name %> </h2>
+			<% end %>
 		</div>
-		<div class="button">
-			<p>Gérer mes moyens de paiement</p>
-		</div>
-		<div class="button">
-			<p>Ajouter et gérer un compte</p>
-		</div>
-		<div class="button">
-			<p>Préférences</p>
-		</div>
-		<div class="button">
-			<p>Sécurité</p>
-		</div>
-	</div>
 
-	<div class="button-group">
-		<div class="button">
-			<%= link_to "Déconnexion", destroy_user_session_path, method: :delete, class: "btn-red" %>
+		<div class="button-group">
+			<div class="button">
+				<%= link_to "Compléter mon profil", edit_user_registration_path %>
+			</div>
+			<div class="button">
+				<p>Gérer mes moyens de paiement</p>
+			</div>
+			<div class="button">
+				<p>Ajouter et gérer un compte</p>
+			</div>
+			<div class="button">
+				<p>Préférences</p>
+			</div>
+			<div class="button">
+				<p>Sécurité</p>
+			</div>
 		</div>
+
+		<div class="button-group">
+			<div class="button">
+				<%= link_to "Déconnexion", destroy_user_session_path, method: :delete, class: "btn-red" %>
+			</div>
+		</div>
+
 	</div>
 
 <% elsif @user == nil %>
