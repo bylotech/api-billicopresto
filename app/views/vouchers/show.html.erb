@@ -20,4 +20,11 @@
 				<p> <%= @voucher.product.name %> </p>
 			</div>
 		</div>
+
+		<div class="retailler-show-wrapper big mx-5 mt-4">
+			<div class="retailler-show-info text-center align-middle">
+				<%= image_tag "calendar.svg", alt: "fb", class: "pb-3" %>
+				<p><%= (@voucher.end_date - Date.current).to_i %> jours restants </p>
+			</div>
+		</div>
 </div>

@@ -45,7 +45,7 @@
     <%= render 'shared/navbar' if current_user %>
     <%= render 'shared/sidebar' if current_retailer %>
     <%= render 'shared/retailer_navbar' if current_retailer && params[:action] != 'home'%>
-    <%= render 'shared/navbar' if current_user == nil || current_retailer == nil %>
+    <%= render 'shared/navbar' if current_retailer == nil %>
     <%= yield %>
     <%= render 'shared/footer'%>
   </body>
