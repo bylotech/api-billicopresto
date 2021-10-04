@@ -15,7 +15,7 @@ module Retailers::Statistics
                 .order("sum_quantity #{order}")
                 .sum(:quantity).to_a
 
-            products = product.last(limit) if limit
+            products = products.first(limit) if limit
         
             sales_by_product_mapper(products)
         end
