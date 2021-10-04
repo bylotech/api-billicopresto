@@ -24,8 +24,10 @@ Rails.application.routes.draw do
 
     #########
 
-  get 'vouchers/filter', to: 'vouchers#filter', as: 'vouchers_filter'
-  resources :vouchers, only: [:index, :show, :create]
+  scope module: 'vouchers' do
+    get 'vouchers/filter', to: 'vouchers#filter', as: 'vouchers_filter'
+    resources :vouchers, only: [:index, :show, :create, :new]
+  end
 
   # root "articles#index"
 
@@ -49,8 +51,5 @@ Rails.application.routes.draw do
   get 'receipts/index'
   get 'receipts/index/filter', to: 'receipts#filter'
   get 'receipts/:id', to: 'receipts#show', as: 'receiptshow'
-
-  # RETAILER
-  resources :vouchers, only: [:index, :show, :new, :create, :filter]
 
 end
