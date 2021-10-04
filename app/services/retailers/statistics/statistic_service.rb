@@ -27,7 +27,7 @@ module Retailers::Statistics
             limit = args[:limit].is_a?(Integer) && args[:limit]
 
             users = User.joins(receipts: [:till, receipt_lines: {item: :product}])
-                                    .where(tills: {retailer: @retailer}, 'item.product_id': product_id)
+                                    .where(tills: {retailer: @retailer}, 'items.product_id': product_id)
                                     .group(:id)
                                     .order("sum_quantity #{order}")
                                     .sum(:quantity).to_a
