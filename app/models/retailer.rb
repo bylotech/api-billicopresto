@@ -8,7 +8,7 @@ class Retailer < ApplicationRecord
   has_many :receipts, through: :tills
   has_many :items
   has_many :products, through: :items
-  has_many :vouchers
+  has_many :vouchers, class_name: 'Vouchers::Voucher'
 
   enum brand: [:carrefour_market, :monoprix, :auchan]
   
