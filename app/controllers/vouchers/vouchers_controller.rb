@@ -32,10 +32,11 @@ module Vouchers
     def create
       
       create_voucher_params = create_params.dig(:create, :voucher)
-      createte_target_params = create_params.dig(:create, :target)
+      create_target_params = create_params.dig(:create, :target)
       mapped_params = create_params_mapper(create_voucher_params)
+      
       @voucher = current_retailer.vouchers.create!(mapped_params)
-      create_target(@voucher, createte_target_params)
+      create_target(@voucher, create_target_params)
 
       redirect_to voucher_path(@voucher)
     end
@@ -86,15 +87,14 @@ module Vouchers
     end
 
     def create_target(voucher, params)
-      
       product_id = params[:product_id]
-      limit = params[:number]
+      limit = params[:number].to_i
       order = params[:order]
-      byebug
-      users_target = statistic_service.consumer_by_product(product_id, limit: limit, order: order)
 
+      users_target = statistic_service.consumer_by_product(product_id, limit: limit, order: order)
+      
       users_target.each do |user|
-        voucher.voucher_targets.create!(user_id: user[:id])
+        voucher.voucher_targets.create!(user_id: user[:user_id])
       end
     end
 
