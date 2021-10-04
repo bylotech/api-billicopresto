@@ -3,20 +3,20 @@ require 'rails_helper'
 RSpec.describe "Vouchers::Vouchers", type: :request do
 
   let(:retailer) {create(:retailer)}
-  let(:till) {create(:till)}
+  let(:till) {create(:till, retailer: retailer)}
   let(:carrot) {create(:product)}
   let(:item_carrot) {create(:item, product: carrot, retailer: retailer)}
   
   let!(:first_user) {create(:user)}
-  let!(:first_receipt) {create(:receipt, date: "2020-12-31", user: first_user)}
+  let!(:first_receipt) {create(:receipt, date: "2020-12-31", user: first_user, till: till)}
   let!(:first_receipt_line) {create(:receipt_line, item: item_carrot, receipt: first_receipt, quantity: 2, unit_price_cents: 1000)}
 
   let!(:second_user) {create(:user)}
-  let!(:second_receipt) {create(:receipt, date: "2020-12-31", user: second_user)}
+  let!(:second_receipt) {create(:receipt, date: "2020-12-31", user: second_user, till: till)}
   let!(:second_receipt_line) {create(:receipt_line, item: item_carrot, receipt: second_receipt, quantity: 2, unit_price_cents: 1000)}
 
   let!(:third_user) {create(:user)}
-  let!(:third_receipt) {create(:receipt, date: "2020-12-31", user: third_user)}
+  let!(:third_receipt) {create(:receipt, date: "2020-12-31", user: third_user, till: till)}
   let!(:third_receipt_line) {create(:receipt_line, item: item_carrot, receipt: third_receipt, quantity: 2, unit_price_cents: 1000)}
 
   let(:create_params) do
@@ -52,10 +52,14 @@ RSpec.describe "Vouchers::Vouchers", type: :request do
     end
   end
 
-  fdescribe "POST /vouchers" do
-    it "returns http success" do
-      post "/vouchers", params: create_params
-      expect(response).to have_http_status(:success)
+  describe "POST /vouchers" do
+    it "redirect to the show of the newly created voucher" do
+      
+      expect { post "/vouchers", params: create_params }.to(
+        change{ Vouchers::Voucher.count }.by(1)
+        .and change { Vouchers::VoucherTarget.count }.by(2)
+      )
+      expect(response).to redirect_to("/vouchers/#{assigns(:voucher).id}")
     end
   end
 
