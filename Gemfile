@@ -80,6 +80,8 @@ group :development do
   gem 'spring'
   #factory_bot for specs
   gem "factory_bot_rails"
+  #rubocop
+  gem 'rubocop-rails', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
