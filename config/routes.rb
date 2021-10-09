@@ -31,7 +31,7 @@ Rails.application.routes.draw do
   end
 
   namespace :retailers do
-    get "retailer/statistics"
+    get "/statistics", to: "retailers#statistics"
   end
   # root "articles#index"
 
