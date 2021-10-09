@@ -1,14 +1,17 @@
 # frozen_string_literal: true
 
 module Retailers
-  class RetailerController < ApplicationController
+  class RetailersController < ApplicationController
     before_action :authenticate_retailer!
     load_and_authorize_resource
 
     STATISTICS_WHITELIST = [].freeze
 
     # /retailers/statistics
-    def statistics; end
+    def statistics
+      @statistics = Retailer.group(:zip_code).count
+      render "retailers/statistics"
+    end
 
     private
 
