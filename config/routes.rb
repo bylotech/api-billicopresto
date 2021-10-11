@@ -3,8 +3,12 @@
 Rails.application.routes.draw do
   namespace :retailers do
     get "/statistics", to: "retailers#statistics"
+
     namespace :statistics do
       get "users_by_zipcode", to: "statistics#users_by_zipcode"
+      get "sales_by_users_value", to: "statistics#sales_by_users_value"
+      get "sales_by_products_value", to: "statistics#sales_by_products_value"
+      get "daily_product_sales/:id", to: "statistics#daily_product_sales"
     end
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
