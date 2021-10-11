@@ -13,13 +13,13 @@ module Retailers
       def call!
         data = Product.joins(:tills)
                       .where(tills: {retailer: @retailer})
-                      .group(:id)
+                      .group(:id, :name)
                       .order("sum_receipt_lines_amount_excluding_taxes_cents #{@order}")
                       .sum("receipt_lines.amount_excluding_taxes_cents")
 
         data = data.first(@limit).to_h if @limit
 
-        data
+        data.transform_keys { |key| key[1] }
       end
     end
   end

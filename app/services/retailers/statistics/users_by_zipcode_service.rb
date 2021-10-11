@@ -13,6 +13,7 @@ module Retailers
             .where(tills: {retailer: @retailer})
             .distinct
             .group(:zip_code)
+            .order(:count_id)
             .count
       end
     end
