@@ -1,0 +1,383 @@
+# This file is used by the pre-commit rubocop check
+
+require:
+  - rubocop-rails
+
+Rails:
+  Enabled: true
+
+AllCops:
+  TargetRubyVersion: 3.0
+  CacheRootDirectory: "tmp/cache/specs/"
+  Exclude:
+    - "app/javascript/**/*"
+    - "bin/*"
+    - "db/**/*"
+    - "app/lib/budget_insight/budgea/client.rb"
+    - "log/**/*"
+    - "node_modules/**/*"
+    - "public/**/*"
+    - "tmp/**/*"
+    - "vendor/**/*"
+    - "scripts/**/*"
+  NewCops: enable
+
+Bundler/OrderedGems:
+  Enabled: false
+
+Layout/AccessModifierIndentation:
+  Enabled: true
+  EnforcedStyle: indent
+
+Layout/ArgumentAlignment:
+  Enabled: true
+  EnforcedStyle: with_first_argument
+
+Layout/BlockAlignment:
+  Enabled: true
+  EnforcedStyleAlignWith: either
+
+Layout/BlockEndNewline:
+  Enabled: true
+
+Layout/ClosingParenthesisIndentation:
+  Enabled: true
+
+Layout/FirstArgumentIndentation:
+  Enabled: true
+  EnforcedStyle: consistent
+
+Layout/FirstArrayElementIndentation:
+  Enabled: true
+  EnforcedStyle: consistent
+
+Layout/FirstArrayElementLineBreak:
+  Enabled: true
+
+Layout/FirstHashElementIndentation:
+  Enabled: true
+  EnforcedStyle: consistent
+
+Layout/FirstHashElementLineBreak:
+  Enabled: true
+
+Layout/FirstMethodArgumentLineBreak:
+  Enabled: true
+
+Layout/FirstParameterIndentation:
+  Enabled: true
+  EnforcedStyle: consistent
+
+Layout/HashAlignment:
+  Enabled: true
+
+Layout/IndentationConsistency:
+  EnforcedStyle: indented_internal_methods
+
+Layout/IndentationWidth:
+  Width: 2
+  IgnoredPatterns:
+    - '^\s*private'
+    - '^\s*protected'
+
+Layout/LineLength:
+  Max: 120
+  Enabled: true
+  AutoCorrect: true
+  AllowURI: true
+  Severity: warning
+  # TODO spec
+  Exclude:
+    - "spec/**/*"
+
+Layout/EndAlignment:
+  EnforcedStyleAlignWith: keyword
+
+Layout/EmptyLineAfterGuardClause:
+  Enabled: false
+
+Layout/MultilineMethodCallIndentation:
+  Enabled: true
+  Exclude:
+    - "spec/**/*"
+
+Layout/MultilineArrayBraceLayout:
+  Enabled: true
+  EnforcedStyle: new_line
+
+Layout/MultilineArrayLineBreaks:
+  Enabled: true
+
+Layout/EmptyLineAfterMultilineCondition:
+  Enabled: true
+
+Layout/LineEndStringConcatenationIndentation:
+  EnforcedStyle: indented
+  IndentationWidth: 2
+
+Layout/MultilineBlockLayout:
+  Enabled: true
+
+Layout/MultilineHashBraceLayout:
+  Enabled: true
+  EnforcedStyle: new_line
+
+Layout/MultilineHashKeyLineBreaks:
+  Enabled: true
+
+Layout/MultilineMethodArgumentLineBreaks:
+  Enabled: true
+
+Layout/SpaceInsideHashLiteralBraces:
+  EnforcedStyle: no_space
+
+Layout/ParameterAlignment:
+  Enabled: true
+  EnforcedStyle: with_first_parameter
+
+Lint/AmbiguousBlockAssociation:
+  Enabled: true
+  IgnoredMethods:
+    - change
+    - not_change
+    - receive
+
+# Does not work because nil.nil? != nil&.nil?
+Lint/SafeNavigationConsistency:
+  Enabled: false
+
+Lint/DuplicateBranch:
+  Enabled: true
+  Exclude:
+    - "spec/**/*"
+
+Lint/DuplicateRegexpCharacterClassElement:
+  Enabled: true
+
+Lint/EmptyClass:
+  Enabled: true
+
+Lint/MissingSuper:
+  Enabled: false
+
+Lint/NoReturnInBeginEndBlocks:
+  Enabled: true
+
+Lint/ToEnumArguments:
+  Enabled: true
+
+Lint/UnmodifiedReduceAccumulator:
+  Enabled: true
+
+Metrics/AbcSize:
+  Enabled: false
+
+Metrics/BlockLength:
+  Enabled: false
+
+Metrics/ClassLength:
+  Enabled: false
+
+Metrics/CyclomaticComplexity:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
+
+Metrics/ModuleLength:
+  Enabled: false
+
+Metrics/ParameterLists:
+  Max: 9
+  MaxOptionalParameters: 5
+
+Metrics/PerceivedComplexity:
+  Enabled: false
+
+Naming/VariableNumber:
+  Enabled: false
+
+Rails/DynamicFindBy:
+  Enabled: true
+
+Rails/HasAndBelongsToMany:
+  Enabled: false
+
+Rails/ActiveRecordOverride:
+  Enabled: true
+
+Lint/RedundantSafeNavigation:
+  Enabled: false
+
+Rails/InverseOf:
+  Enabled: true
+
+Rails/UnknownEnv:
+  Environments:
+    - production
+    - development
+    - test
+    - staging
+
+Rails/Validation:
+  Enabled: true
+
+Security/Open:
+  Enabled: true
+
+Style/Alias:
+  Enabled: true
+
+Style/AsciiComments:
+  Enabled: true
+  AllowedChars: [€, Σ]
+
+Style/CombinableLoops:
+  Enabled: true
+  Severity: warning
+
+Style/CollectionCompact:
+  Enabled: true
+
+Style/BlockDelimiters:
+  Enabled: true
+  EnforcedStyle: braces_for_chaining
+  IgnoredMethods:
+    - lambda
+    - proc
+    - let
+    - let_it_be
+    - let!
+    - expect
+    - raise_error
+  Exclude:
+    - "app/serializers/**/*"
+
+Style/CaseLikeIf:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/ExplicitBlockArgument:
+  Enabled: false
+
+# Missing top-level class documentation comment
+Style/Documentation:
+  Enabled: false
+
+Layout/TrailingEmptyLines:
+  Enabled: true
+
+Style/FloatDivision:
+  Enabled: false
+
+Style/GuardClause:
+  Enabled: false
+
+Style/HashEachMethods:
+  Enabled: false
+
+Style/HashSyntax:
+  EnforcedStyle: ruby19
+
+Style/HashLikeCase:
+  Enabled: false
+
+Style/HashTransformValues:
+  Enabled: false
+
+Style/MultilineBlockChain:
+  Enabled: false
+
+Style/MultilineTernaryOperator:
+  Enabled: true
+
+Style/OptionalBooleanParameter:
+  Enabled: false
+
+Style/RedundantSelf:
+  Enabled: true
+
+Style/RescueStandardError:
+  Exclude:
+    - "lib/**/*"
+
+Style/SafeNavigation:
+  Enabled: false
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/StringConcatenation:
+  Enabled: false
+
+Style/SymbolArray:
+  EnforcedStyle: brackets
+
+Style/SymbolProc:
+  Exclude:
+    - "app/serializers/**/*"
+
+Style/TrailingCommaInArguments:
+  Enabled: true
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInHashLiteral:
+  Enabled: true
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInArrayLiteral:
+  Enabled: true
+  EnforcedStyleForMultiline: comma
+
+Rails/EnumHash:
+  Enabled: false
+
+Rails/RakeEnvironment:
+  Enabled: false
+
+# RSpec/MultipleExpectations:
+#   Enabled: false
+# RSpec/AnyInstance:
+#   Enabled: false
+# RSpec/SubjectStub:
+#   Enabled: false
+# RSpec/ExampleLength:
+#   Enabled: false
+# RSpec/NestedGroups:
+#   Enabled: false
+# RSpec/ContextWording:
+#   Enabled: false
+# RSpec/ScatteredLet:
+#   Enabled: false
+# RSpec/RepeatedExample:
+#   Enabled: false
+# RSpec/RepeatedDescription:
+#   Enabled: false
+# RSpec/MessageSpies:
+#   Enabled: false
+# RSpec/LetSetup:
+#   Enabled: false
+# RSpec/MessageChain:
+#   Enabled: false
+# RSpec/BeforeAfterAll:
+#   Enabled: false
+# RSpec/RepeatedExampleGroupDescription:
+#   Enabled: false
+# RSpec/NamedSubject:
+#   Enabled: false
+# RSpec/RepeatedExampleGroupBody:
+#   Enabled: false
+# RSpec/DescribeClass:
+#   Enabled: false
+# RSpec/PredicateMatcher:
+#   Enabled: false
+# RSpec/BeEql:
+#   Enabled: false
+# RSpec/VariableName:
+#   Enabled: false
+  # IgnoredPatterns:
+  #   - ^Authorization
+# RSpec/ExpectInHook:
+#   Enabled: false

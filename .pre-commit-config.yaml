@@ -1,0 +1,22 @@
+# prettier-ignore
+repos:
+  - repo: git://github.com/pre-commit/pre-commit-hooks
+    rev: v4.0.1
+    hooks:
+      - id: trailing-whitespace
+        exclude: vendor/|.js.snap|.yml.enc
+      - id: check-yaml
+        exclude: spec/support/|.kubernetes|.drone.yml
+      - id: end-of-file-fixer
+        exclude: vendor/|.yml.enc
+      - id: check-added-large-files
+        args: [--maxkb=1024]
+  - repo: local
+    hooks:
+      - id: rubocop
+        name: Check Ruby style with rubocop
+        description: Enforce Ruby style guide with rubocop
+        entry: bin/rubocop_wrapper.sh
+        language: script
+        pass_filenames: true
+        types: ['ruby']
