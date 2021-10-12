@@ -14,7 +14,7 @@ RSpec.describe "Receipts", type: :request do
   before {sign_in user}
 
 
-  fdescribe "GET /index" do
+  describe "GET /index" do
     it "returns http success" do
       get "/receipts/index" 
       expect(response).to have_http_status(:success)

@@ -47,3 +47,209 @@
 	border-bottom: lightgray solid 1px;
 	margin: 0 !important;
 }
+
+// RETAILER DASHBOARD CARDS //
+
+.home-organizer {
+	display: grid;
+	grid-template-columns: 1fr 3fr;
+	    //height: 90vh;
+}
+
+.retailler-home-wrapper {
+	grid-column: 2;
+	display: grid;
+	grid-gap: 30px;
+	grid-template-columns: 1fr 1fr 1fr;
+	    margin: 30px 0px 0 0;
+}
+
+.retailler-home-info {
+	padding: 40px 0 0 0;
+	background: rgba(245, 245, 245, .2);
+	box-shadow: 0px 0px 50px 0px rgba(0, 0, 0, .2);
+	border-radius: 10px;
+	transition: background 0.2s ease-in-out;
+	& p {
+		color: white;
+		font-size: 12px;
+		transition: color 0.2s ease-in-out;
+	}
+	& p.number-stat {
+		font-size: 80px;
+	}
+	&:hover {
+		background: rgba(245, 245, 245, .9);
+		& p {
+			color: $blue;
+		}
+	}
+	& .description-home-card {
+		font-weight: 100;
+		opacity: 1;
+	}
+}
+
+.logo-retailer {
+    height: 70px;
+}
+
+.navbar-retailer {
+	margin: 0 40px 0 27vw !important;
+    & a {
+    	color: white;
+    }
+}
+
+.see-more {
+	font-size: 10px !important;
+	text-transform: uppercase;
+	padding-bottom: 70px;
+	& i {
+		font-size: 10px !important;
+		padding-left: 3px;
+	}
+}
+
+// TERRE LUNE // 
+
+.terre-lune {
+	grid-column: 2;
+	& p {
+	   color: white;
+    	font-size: 14px;
+    	font-weight: 100;
+	}
+}
+
+.terre-lune-wrapper {
+		        justify-content: center;
+	            align-items: center;
+}
+
+.terre-line {
+	align-items: center;
+}
+
+.terre, .lune {
+    z-index: 10000;
+    pointer-events: none;
+    border-radius: 50%;
+    opacity: 1;
+    //transform: translate(-50%, -50%);
+}
+
+.terre {
+    width: 25px;
+    height: 25px;
+    background-color: rgba(233, 233, 237, 1);
+}
+
+.lune {
+    width: 20px;
+    height: 20px;
+    background-color: rgba(233, 233, 237, 0);
+    border: 5px solid rgba(233, 233, 237, 1);
+}
+
+hr {
+// width: 60vw;
+height: 3px !important;
+background-color:#fff;
+color:#ffffff;
+    opacity: 1 !important;
+}
+
+//////// RETAILER INDEX VOUCHER /////////
+
+.retailler-vouchers-wrapper {
+	grid-column: 2;
+	display: grid;
+	grid-gap: 20px;
+	grid-template-columns: 1fr 1fr;
+}
+
+.retailler-vouchers-info {
+	position: relative;
+	overflow: hidden;
+	padding: 0px;
+	background: rgba(245, 245, 245, .2);
+	box-shadow: 0px 0px 50px 0px rgba(0, 0, 0, .2);
+	border-radius: 10px;
+	transition: background 0.2s ease-in-out;
+	& p {
+		color: white;
+		font-size: 12px;
+		transition: color 0.2s ease-in-out;
+	}
+	& p.number-stat {
+		font-size: 80px;
+	}
+	&:hover {
+		background: rgba(245, 245, 245, .9);
+		& p {
+			color: $blue;
+		}
+	}
+	& .description-home-card {
+		font-weight: 100;
+		opacity: 1;
+	}
+	& img {
+		height: 70px;
+		padding: 0 !important;
+	}
+	& .voucher-left {
+		box-shadow: 5px 0px 20px rgba(0, 0, 0, .2);
+		border-right: 1px solid whitesmoke;
+		//background: rgba(245, 245, 245, 1);
+	    padding: 20px !important;
+	}
+	& p.active-tag {
+		border-radius: 5px;
+		margin: 5px;
+		padding: 5px 10px; 
+		color: $blue;
+		background-color: whitesmoke;
+		position: absolute;
+		top: 0;
+		right: 0;
+	}
+}
+
+
+//////// RETAILER SHOW VOUCHER /////////
+
+.retailler-show-wrapper {
+	grid-column: 2;
+	display: grid;
+	grid-gap: 30px;
+	grid-template-columns: 1fr 1fr 1fr;
+}
+
+.big{
+	grid-template-columns: 1fr 1fr;
+}
+
+.retailler-show-info {
+	padding: 40px 0 40px 0;
+	background: rgba(245, 245, 245, .2);
+	box-shadow: 0px 0px 50px 0px rgba(0, 0, 0, .2);
+	border-radius: 10px;
+	transition: background 0.2s ease-in-out;
+	& p {
+		color: white;
+		font-size: 12px;
+		transition: color 0.2s ease-in-out;
+	}
+	& p.number-detail {
+		font-size: 46px;
+	}
+	& img {
+		    height: 70px;
+	}
+}
+
+input#start_date, input#end_date {
+	font-size: 12px;
+}

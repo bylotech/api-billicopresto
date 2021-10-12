@@ -1,2 +1,29 @@
-<h1>Vouchers#show</h1>
-<p>Find me in app/views/vouchers/show.html.erb</p>
+<div class="home-organizer">
+
+		<div class="retailler-show-wrapper mx-5">
+			<div class="retailler-show-info text-center align-middle">
+				<%= image_tag "calendar.svg", alt: "fb", class: "pb-3" %>
+				<p><%= (@voucher.end_date - Date.current).to_i %> jours restants </p>
+			</div>
+			<div class="retailler-show-info text-center align-middle">
+				<%= image_tag "money.svg", alt: "fb", class: "pb-3" %>
+				<p> <%= "0,#{@voucher.discount_cents} €" %> de réduction</p>
+			</div>
+			<div class="retailler-show-info text-center align-middle">
+				<% if @voucher.product.kind == "Food and beverages" %>
+				  <%= image_tag "grocery.svg", alt: "fb", class: "pb-3" %>
+				<% elsif @voucher.product.kind == "Health and beauty" %>
+				  <%= image_tag "shampoo.svg", alt: "hb", class: "pb-3" %>
+				<% else %> 
+				  <%= image_tag "house.svg", alt: "hl", class: "pb-3" %>
+				<% end %> 
+				<p> <%= @voucher.product.name %> </p>
+			</div>
+		</div>
+
+		<div class="retailler-show-wrapper big mx-5 mt-4">
+			<div class="retailler-show-info text-center align-middle">
+
+			</div>
+		</div>
+</div>

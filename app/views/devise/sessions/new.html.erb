@@ -1,4 +1,4 @@
-<div class="form-wrapper">
+<div class="form-wrapper col-md-8 col-lg-6">
 <!--   <h2>Log in</h2> -->
   <p>Contents de te revoir !</p>
 
@@ -13,7 +13,7 @@
                   placeholder: 'password',
                   required: false,
                   input_html: { autocomplete: "current-password" } %>
-      <%= f.input :remember_me, :input_html => { checked: "checked" }, as: :boolean if devise_mapping.rememberable? %>
+      <%#= f.input :remember_me, :input_html => { checked: "checked" }, as: :boolean if devise_mapping.rememberable? %>
     </div>
 
     <div class="form-actions">
@@ -21,7 +21,7 @@
     </div>
   <% end %>
 
-  <div class="form-link">
+  <div class="form-link hidden-lg">
     <%= render "devise/shared/links"%>
   </div>
 </div>

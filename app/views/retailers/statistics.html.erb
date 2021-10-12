@@ -1,0 +1,16 @@
+<h1>Retailers::Retailer#statistics</h1>
+<p>Find me in app/views/retailers/retailer/statistics.html.erb</p>
+<%= pie_chart @statistics %>
+
+<div class="button">
+	<%= link_to "users_value",  retailers_statistics_users_by_zipcode_path %>
+	<i class="fas fa-chart-line"></i>
+</div>
+<div class="button">
+	<%= link_to "users_value", retailers_statistics_sales_by_users_value_path %>
+	<i class="fas fa-chart-line"></i>
+</div>
+<div class="button">
+	<%= link_to "users_value", retailers_statistics_sales_by_products_value_path %>
+	<i class="fas fa-chart-line"></i>
+</div>

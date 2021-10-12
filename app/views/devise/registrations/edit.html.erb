@@ -2,7 +2,7 @@
   <i class="fas fa-chevron-left back-white"></i>
 <% end %>
 
-<div class="form-wrapper">
+<div class="form-wrapper col-lg-6">
   <p class="hint">leave it blank if you don't want to change it</p>
   <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
     <%= f.error_notification %>
@@ -16,15 +16,25 @@
       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
         <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
       <% end %>
+
+      <% if current_retailer %>
+        
+        <%= f.input :name,
+                    placeholder: "change your name",
+                    required: false,
+                    input_html: { autocomplete: "new-first-name" } %>
       
-      <%= f.input :first_name,
-                  placeholder: "change your first name",
-                  required: false,
-                  input_html: { autocomplete: "new-first-name" } %>
-      <%= f.input :last_name,
-                  placeholder: "change your last name",
-                  required: false,
-                  input_html: { autocomplete: "new-last-name" } %>
+      <% else %>
+        <%= f.input :first_name,
+                    placeholder: "change your first name",
+                    required: false,
+                    input_html: { autocomplete: "new-first-name" } %>
+        <%= f.input :last_name,
+                    placeholder: "change your last name",
+                    required: false,
+                    input_html: { autocomplete: "new-last-name" } %>       
+      <% end %>
+      
       <%= f.input :password,
                   placeholder: "new password",
                   required: false,

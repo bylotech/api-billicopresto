@@ -3,6 +3,8 @@
       	'display: none !important'
       elsif params[:action] == 'home'
         'display: flex !important'
+      # elsif params[:action] == 'index' && current_retailer
+      #   'display: flex !important'
       elsif user_signed_in? 
         'display: flex !important'
       else
@@ -16,12 +18,25 @@
 	<div class="navbar d-flex" style="<%=display%>; position: fixed !important; width: 100vw; padding: 30px 40px !important">
 		<div class="navbar-left d-flex">
 		<%= image_tag "logo-bylo-w.svg", alt: "bylo logo", class: "logo-navbar"%>
-		<p class="moto">Vote portefeuille 100% digital</p>
+		<p class="moto">Votre portefeuille 100% digital</p>
 		</div>
 		<div class="navbar-right d-flex">
-			<%= link_to "Rejoindre l'aventure", new_retailer_registration_path, style: "z-index: 1000"%>
+			<%= mail_to "bylo.developpers@gmail.com", "Rejoindre l'aventure", style: "z-index: 1000"  %>
 			<p style="padding: 10px;">|</p>
 			<%= link_to "Accéder à mon espace", new_retailer_session_path, style: "z-index: 1000"%>
+		</div>
+	</div>
+
+<% elsif params[:action] == 'index' && current_retailer %>
+
+	<div class="navbar d-flex" style="<%=display%>; position: fixed !important; width: 100vw; padding: 30px 40px !important">
+		<div class="navbar-left d-flex">
+		<%= image_tag "logo-bylo-w.svg", alt: "bylo logo", class: "logo-navbar"%>
+		</div>
+		<div class="navbar-right d-flex">
+			<%= link_to root_path do %>
+				<i class="far fa-user" id="dashboard" style="color: white !important;"></i>
+			<% end %>
 		</div>
 	</div>
 

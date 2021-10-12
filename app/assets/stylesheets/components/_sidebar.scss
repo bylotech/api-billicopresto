@@ -1,0 +1,36 @@
+.sidebar-wrapper {
+	position: fixed;
+    top: 0;
+    height: 100vh;
+    background: whitesmoke;
+    box-shadow: 0px 0px 50px 0px rgba(0, 0, 0, .2);
+    z-index: 1000;
+}
+
+.sidebar-profile {
+	& i, h2, p {
+		color: black !important;
+	}
+	& p {
+		//text-transform: uppercase;
+		font-size: 10px;
+	}
+}
+
+.sidebar-button-group {
+	width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+.sidebar-button-group-top > .button {
+	display: flex;
+	justify-content: space-between;
+	padding-left: 40px;
+	padding-right: 40px;
+	align-items: baseline;
+	& i {
+		font-size: 14px;
+	}
+}
+

@@ -1,34 +1,76 @@
-<% if current_retailer != nil %>
+<% if current_retailer %>
+	
+	<div class="home-organizer">
 
-	<div class="profile">
-		<i class="far fa-user"></i>
-		<% if current_retailer.name != nil %>
-		<h2><%= current_retailer.name %> </h2>
-		<% end %>
-	</div>
+		<div class="retailler-home-wrapper mx-5">
+			<div class="retailler-home-info text-center align-middle">
+				<p class="number-stat"> <%= current_retailer.tills.length %> </p> 
+				<p> caisses en activité</p>
+				<p class="description-home-card pt-3 pb-5 px-5"> Gérez vos caisses depuis notre plateforme, générez et imprimez des QR codes pour les deployer en boutique.</p>
+				<%= link_to vouchers_path do %>
+					<p class="see-more"> Voir plus <i class="fas fa-chevron-right"></i> </p>
+				<% end %>
+			</div>
+			<div class="retailler-home-info text-center align-middle">
+				<p class="number-stat"> <%= current_retailer.receipts.length %> </p> 
+				<p> tickets de caisse actifs</p>
+				<p class="description-home-card pt-3 pb-5 px-5"> Consultez vos tickets de caisses actifs (voir Préférences) et ayez une vue d'ensemble sur la consommation de vos clients. </p>
+				<%= link_to vouchers_path do %>
+					<p class="see-more"> Voir plus <i class="fas fa-chevron-right"></i> </p>
+				<% end %>
+			</div>
+			<div class="retailler-home-info text-center align-middle">
+				<p class="number-stat"> <%= current_retailer.vouchers.length %> </p> 
+				<p> bons de réduction actifs </p>
+				<p class="description-home-card pt-3 pb-5 px-5"> Proposez à votre clientèle des bons de réduction presonnalisés et consultez les statistiques des précédentes promotions.</p>
+				<%= link_to vouchers_path do %>
+					<p class="see-more"> Voir plus <i class="fas fa-chevron-right"></i> </p>
+				<% end %>
+			</div>
+		</div>
 
-	<div class="button-group">
-		<div class="button">
-			<%= link_to "Compléter mon profil", edit_user_registration_path %>
-		</div>
-		<div class="button">
-			<p>Gérer mes moyens de paiement</p>
-		</div>
-		<div class="button">
-			<p>Ajouter et gérer un compte</p>
-		</div>
-		<div class="button">
-			<p>Préférences</p>
-		</div>
-		<div class="button">
-			<p>Sécurité</p>
-		</div>
-	</div>
+		<%  def terre_lune_width(ticket_actif)
 
-	<div class="button-group">
-		<div class="button">
-			<%= link_to "Déconnexion", destroy_user_session_path, method: :delete, class: "btn-red" %>
+				terre_lune = 38440000000
+				ticket_moyen = 40
+
+				ticket_length = (ticket_actif * ticket_moyen)
+
+				return rapport = (ticket_length*100).fdiv(terre_lune)
+				
+			end
+
+			def width
+
+				size = (60 * terre_lune_width(current_retailer.receipts.length)).round
+
+				if size < 10
+					return "1vw"
+				elsif size > 60
+					return "60vw"
+				else 
+					return size.to_s + "vw"
+				end 
+
+			end
+
+		%>
+		
+		<div class="terre-lune mx-5 mt-5">
+
+			<p class="py-3"><strong> Bravo ! </strong><%= current_retailer.name %>, <%= current_retailer.city %> a économisé en moyenne <%= (40 * current_retailer.receipts.length).fdiv(1000) %> km de papier, <br> soit <%= terre_lune_width(current_retailer.receipts.length).round(2) if terre_lune_width(current_retailer.receipts.length).round(2) > 0.1 %> <%= "moins de 0.1" if terre_lune_width(current_retailer.receipts.length).round(2) <= 0.1 %> % de la distance Terre-Lune. </p>
+			<div class="terre-lune-wrapper d-flex pt-3">
+
+				<div class="d-flex terre-line">
+					<div class="terre"></div>
+					<div class="line"><hr style="width: <%= width %>"></div>
+					<div class="line"><hr style="width: 60vw; opacity: 0.2 !important"></div>
+				</div>
+
+				<div class="lune"></div>
+			</div>
 		</div>
+
 	</div>
 
 <% elsif @user == nil %>

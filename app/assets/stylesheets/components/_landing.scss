@@ -103,6 +103,32 @@
 	grid-template-columns: 1fr 1fr;
 }
 
+.why-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 30px;
+}
+
+.why-info {
+  margin-top: 30px;
+  padding: 40px 0 0 0;
+  background: rgba(245, 245, 245, .2);
+  box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, .1);
+  border-radius: 10px;
+  transition: background 0.2s ease-in-out;
+  & p {
+    color: blue;
+    font-size: 12px;
+    transition: color 0.2s ease-in-out;
+  }
+  &:hover {
+    background: rgba(245, 245, 245, .9);
+  }
+  & img {
+    width: 100px;
+  }
+}
+
 .why-left p, h6 {
 	padding: 10px 0;
 }
@@ -134,6 +160,19 @@
 
 .who h2 {
 	margin-bottom: 30px !important;
+}
+
+.who-content {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  & .who-left {
+    width: 30vw;
+  }
+  & img {
+    margin: 0 50px;
+    width: 40vw;
+  }
 }
 
 /////////BTN////////////
@@ -201,8 +240,9 @@
 }
 
 i {
-  font-size: 30px;
-  color: $blue;
+  font-size: 24px;
+  padding-left: 5px;
+  // color: $blue;
 }
 
 .list-inline {

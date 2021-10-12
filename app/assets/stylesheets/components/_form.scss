@@ -1,12 +1,14 @@
 ////////DEVISE////////////
 
 .form-wrapper {
-	height: 100%;
+	height: 100vh;
 	margin: 30px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	text-align: center;
+	margin: 0 auto;
+	    padding: 20px;
 }
 
 .form-wrapper h2, .form-wrapper p{
@@ -115,6 +117,37 @@ input[type=checkbox]{
 	font-size: 10px;
 }
 
+.retailer_remember_me {
+	color: white;
+}
+
+.category-wrapper-gender {
+	    margin: 13px;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-gap: 10px;
+}
+
+.category-selector.gender + label {
+    border: 1px white solid;
+    border-radius: 3px;
+    opacity: .4;
+        padding: 5px;
+}
+
+.category-selector.gender:checked + label {
+	color: white;
+	border: 1px white solid;
+  opacity: 1 !important;
+}
+
+.gender.checkbox {
+	color: white;
+	font-weight: 100;
+	text-transform: uppercase;
+	font-size: 12px;
+	opacity: 1;
+}
 
 ////////FILTER////////////
 
@@ -233,9 +266,11 @@ input[type=checkbox]{
 } 
 
 
+///////////VOUCHER FORM/////////////
 
-
-
+.voucher_form label {
+	display: block;
+}
 
 
 

@@ -1,0 +1,54 @@
+<% if params[:action] != 'home' %>
+
+	<div class="sidebar-wrapper col-lg-3">
+
+		<div class="sidebar-profile profile">
+			<i class="fas fa-shapes"></i>
+			<% if current_retailer.name != nil %>
+			<h2> <%= current_retailer.name %> </h2>
+			<p> <%= current_retailer.full_address %>, <%= current_retailer.city %> </p>
+			<% end %>
+		</div>
+
+		<div class="sidebar-button-group-top">
+
+			<div class="button">
+				<%= link_to "Dashboard", root_path %>
+				<i class="fas fa-shapes"></i>
+			</div>
+			<div class="button">
+				<%= link_to "Mes caisses", edit_retailer_registration_path %>
+				<i class="fas fa-qrcode"></i>
+			</div>
+			<div class="button">
+				<%= link_to "Mes tickets de caisse", edit_retailer_registration_path %>
+				<i class="fas fa-receipt"></i>
+			</div>
+			<div class="button">
+				<%= link_to "Mes bons de réduction", vouchers_path %>
+				<i class="fas fa-percentage"></i>
+			</div>
+			<div class="button">
+				<%= link_to "Mes statistiques client", retailers_statistics_path %>
+				<i class="fas fa-chart-line"></i>
+			</div>
+
+		</div>
+
+		<div class="sidebar-button-group">
+
+			<div class="button">
+				<%= link_to "Compléter mon profil", edit_retailer_registration_path %>
+			</div>
+			<div class="button">
+				<p>Sécurité</p>
+			</div>
+			<div class="button">
+				<%= link_to "Déconnexion", destroy_user_session_path, method: :delete, class: "btn-red" %>
+			</div>
+
+		</div>
+
+	</div>
+
+<% end %>

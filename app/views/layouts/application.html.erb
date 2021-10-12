@@ -11,12 +11,17 @@
   </head>
 
   <%  def bg_color
-        if params[:action] == 'dashboard' && @user != nil 
+        if params[:action] == 'dashboard' && current_user
           "background: linear-gradient(-20deg, #ff9133, #1c2edf, #1c2edf);
             background-size: 500vw 200vh;
             animation: gradient 15s ease infinite;
             height: 100vh; width: 100.2vw !important; overflow: hidden;" 
-        elsif params[:action] == 'dashboard' && @user == nil
+        elsif params[:action] == 'dashboard' && current_retailer
+          "background: linear-gradient(-20deg, #1c2edf, #1c2edf, #ff9133);
+            background-size: 500vw 200vh;
+            animation: gradient 25s ease infinite;
+            height: 100vh; width: 100.2vw !important; overflow: hidden;"
+        elsif params[:action] == 'dashboard' && current_user == nil
           "background: linear-gradient(-20deg, #ff9133, #fc7145, #1c2edf, #1c2edf);
             background-size: 500vw 200vh;
             animation: gradient 15s ease infinite;
@@ -26,6 +31,10 @@
             background-size: 500vw 200vh;
             animation: gradient 35s ease infinite;
             height: 100vh; width: 100.2vw !important; overflow: hidden;" 
+        elsif params[:action] == 'index' && current_retailer
+          "background: #1c2edf" 
+        elsif params[:action] == 'show' && current_retailer
+          "background: #1c2edf" 
         else
           'background-color: whitesmoke;'
         end 
@@ -33,7 +42,10 @@
   %>
 
   <body class="pb-4" style="<%=bg_color%>">
-    <%= render 'shared/navbar' %>
+    <%= render 'shared/navbar' if current_user %>
+    <%= render 'shared/sidebar' if current_retailer %>
+    <%= render 'shared/retailer_navbar' if current_retailer && params[:action] != 'home'%>
+    <%= render 'shared/navbar' if current_retailer == nil && current_user == nil%>
     <%= yield %>
     <%= render 'shared/footer'%>
   </body>
