@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       get "daily_product_sales/:id", to: "statistics#daily_product_sales"
     end
   end
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   # LANDING-PAGE
@@ -40,6 +41,9 @@ Rails.application.routes.draw do
     resources :vouchers, only: [:index, :show, :create, :new]
   end
 
+  namespace :retailers do
+    get "/statistics", to: "retailers#statistics"
+  end
   # root "articles#index"
 
   root to: "pages#dashboard"

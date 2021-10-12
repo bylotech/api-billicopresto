@@ -3,6 +3,7 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+
   devise :database_authenticatable,
          :registerable,
          :recoverable,
@@ -13,6 +14,7 @@ class User < ApplicationRecord
   has_many :tills, through: :receipts
   has_many :retailers, through: :tills
   enum gender: [:undefined, :male, :female]
+
   def age
     Date.current.year - birthday.year
   end

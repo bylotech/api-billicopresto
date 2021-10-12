@@ -3,6 +3,7 @@
 class ReceiptLine < ApplicationRecord
   belongs_to :item
   belongs_to :receipt
+
   has_one :till, through: :receipt
   has_one :retailer, through: :till
   has_one :product, through: :item
