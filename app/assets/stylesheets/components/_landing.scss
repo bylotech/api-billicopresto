@@ -64,7 +64,7 @@
     z-index: 101;
         top: 0px;
     left: 0px;
-    transform: translate(17%, -40%);
+    transform: translate(19%, -40%);
     animation: phone-slide 35s ease-out 1;
 }
 
@@ -75,10 +75,10 @@
 	}
 	1% {
 		opacity: 1;
-		transform: translate(20%, -37%);
+		transform: translate(25%, -37%);
 	}
 	100% {
-		transform: translate(17%, -40%);
+		transform: translate(19%, -40%);
 	}
 }
 
@@ -110,14 +110,14 @@
 }
 
 .why-info {
-  margin-top: 30px;
+  margin: 50px 0;
   padding: 40px 0 0 0;
   background: rgba(245, 245, 245, .2);
   box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, .1);
   border-radius: 10px;
   transition: background 0.2s ease-in-out;
   & p {
-    color: blue;
+    color: $blue;
     font-size: 12px;
     transition: color 0.2s ease-in-out;
   }
@@ -131,6 +131,19 @@
 
 .why-left p, h6 {
 	padding: 10px 0;
+}
+
+.why-content-bottom {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  & .who-left {
+    width: 30vw;
+  }
+  & img {
+    margin: 0 50px;
+    width: 20vw;
+  }
 }
 
 .how {
