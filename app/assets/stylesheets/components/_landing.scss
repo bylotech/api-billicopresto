@@ -50,6 +50,7 @@
     // width: 300px;
     z-index: 100;
         font-weight: 200;
+        max-width: 310px;
 }
 
 .banner a {
@@ -64,21 +65,17 @@
     z-index: 101;
         top: 0px;
     left: 0px;
-    transform: translate(19%, -40%);
+    transform: translate(25%, -40%);
     animation: phone-slide 35s ease-out 1;
 }
 
 @keyframes phone-slide {
 	0% {
-		opacity: 0;
-		transform: translate(100%, -20%);
-	}
-	1% {
 		opacity: 1;
-		transform: translate(25%, -37%);
+		transform: translate(35%, -37%);
 	}
 	100% {
-		transform: translate(19%, -40%);
+		transform: translate(25%, -40%);
 	}
 }
 
