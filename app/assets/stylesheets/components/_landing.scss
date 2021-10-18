@@ -65,17 +65,21 @@
     z-index: 101;
         top: 0px;
     left: 0px;
-    transform: translate(25%, -40%);
+    transform: translate(27%, -40%);
     animation: phone-slide 35s ease-out 1;
 }
 
 @keyframes phone-slide {
-	0% {
+  0% {
+    opacity: 0.3;
+    transform: translate(160%, 7%);
+  }
+	2% {
 		opacity: 1;
 		transform: translate(35%, -37%);
 	}
 	100% {
-		transform: translate(25%, -40%);
+		transform: translate(27%, -40%);
 	}
 }
 
