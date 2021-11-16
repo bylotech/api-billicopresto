@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "./app/lib/open_data_paris/open_data_paris_client"
 
 grocery_store_database ||= OpenDataParis::OpenDataParisClient.fetch_grocery_store(50)
