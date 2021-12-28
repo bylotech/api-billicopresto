@@ -35,6 +35,10 @@
           "background: #1c2edf" 
         elsif params[:action] == 'show' && current_retailer
           "background: #1c2edf" 
+        elsif params[:action] == 'statistics' && current_retailer
+          "background: #1c2edf"
+        elsif params[:action] == 'users_by_gender' && current_retailer
+          "background: #whitesmoke"
         else
           'background-color: whitesmoke;'
         end 

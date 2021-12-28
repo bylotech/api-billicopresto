@@ -6,10 +6,10 @@ module Retailers
       before_action :authenticate_retailer!
 
       # /users_by_zipcode
-      def users_by_zipcode
-        @data_zip = UsersByZipcodeService.new(current_retailer).call!
+      def users_by_gender
+        @data_zip = UsersByGenderService.new(current_retailer).call!
 
-        render "retailers/statistics/users_by_zipcode"
+        render "retailers/statistics/users_by_gender"
       end
 
       # /sales_by_users_value

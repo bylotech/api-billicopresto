@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     get "/statistics", to: "retailers#statistics"
 
     namespace :statistics do
-      get "users_by_zipcode", to: "statistics#users_by_zipcode"
+      get "users_by_gender", to: "statistics#users_by_gender"
       get "sales_by_users_value", to: "statistics#sales_by_users_value"
       get "sales_by_products_value", to: "statistics#sales_by_products_value"
       get "daily_product_sales/:id", to: "statistics#daily_product_sales"

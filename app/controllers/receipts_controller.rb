@@ -11,7 +11,9 @@ class ReceiptsController < ApplicationController
 
   def index
 
-    if current_user == current_retailer
+    if current_retailer
+      @receipts = current_retailer.receipts
+    else
       @receipts = @receipts.includes(:till) if filter_params && filter_params["till.retailer"].presence 
 
       # old master : @receipts = @receipts.includes(:till) if filter_params && filter_params["till.retailer"]&.compact_blank.presence
@@ -20,9 +22,6 @@ class ReceiptsController < ApplicationController
       @receipts = Controllers::FilterService.new(@receipts,FIELD_FILTER_WHITELIST, filter_params).filter! if filter_params
       @receipts_ordered = @receipts.group_by { |t| t.created_at.beginning_of_year } 
       @receipts_ordered_month = @receipts.group_by { |t| t.created_at.beginning_of_month } 
-    else
-      # @receipts = Receipt.where(retailer: current_retailer)
-      @receipts = current_retailer.receipts
     end
 
   end

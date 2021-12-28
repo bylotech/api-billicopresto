@@ -250,6 +250,25 @@ color:#ffffff;
 	}
 }
 
+.retailler-stat-info {
+	padding: 40px 0 40px 0;
+	background: rgba(245, 245, 245, .2);
+	box-shadow: 0px 0px 50px 0px rgba(0, 0, 0, .2);
+	border-radius: 10px;
+	transition: background 0.2s ease-in-out;
+	& p {
+		color: $blue;
+		font-size: 12px;
+		transition: color 0.2s ease-in-out;
+	}
+	& p.number-detail {
+		font-size: 46px;
+	}
+	& img {
+		    height: 70px;
+	}
+}
+
 input#start_date, input#end_date {
 	font-size: 12px;
 }
