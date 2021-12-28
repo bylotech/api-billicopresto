@@ -8,6 +8,7 @@ class Ability
     when "User"
       can [:read, :filter], Receipt, user: user
     when "Retailer"
+      can [:read, :filter], Receipt, retailer: user
       can [:read, :filter, :create], Vouchers::Voucher, retailer: user
       can [:statistics], Retailer
     end

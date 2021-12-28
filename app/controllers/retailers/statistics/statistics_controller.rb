@@ -7,14 +7,14 @@ module Retailers
 
       # /users_by_zipcode
       def users_by_zipcode
-        @data = UsersByZipcodeService.new(current_retailer).call!
+        @data_zip = UsersByZipcodeService.new(current_retailer).call!
 
         render "retailers/statistics/users_by_zipcode"
       end
 
       # /sales_by_users_value
       def sales_by_users_value
-        @data = SalesByUsersValueService.new(current_retailer).call!
+        @data_value = SalesByUsersValueService.new(current_retailer).call!
 
         render "retailers/statistics/sales_by_users_value"
       end

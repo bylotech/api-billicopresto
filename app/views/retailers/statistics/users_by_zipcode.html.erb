@@ -1,7 +1,34 @@
-
 <div style= 'margin-left: 400px'>
-<div>
+</div>
 Users By ZipCodes
 <div>
-<%= column_chart @data %>
-<div>
+<%= column_chart @data_value %>
+</div>
+
+
+<div style="margin-left: 300px;">
+<div>Line chart</div>
+
+<%= line_chart @data_zip, colors: ["#b00"], library: {backgroundColor: "#eee"}, dataset: {borderWidth: 10}, discrete: true%>
+
+<div>Pie chart</div>
+
+<%= pie_chart @data_zip, colors: ["#b00"], donut: true %>
+
+<div>Column chart</div>
+
+<%= column_chart @data_zip, colors: ["#b00"], discrete: true %>
+
+<div>Bar chart</div>
+
+<%= bar_chart @data_zip %>
+
+<div>Area chart</div>
+
+<%= area_chart @data_zip %>
+
+<div>Scatter chart</div>
+
+<%= scatter_chart @data_zip %>
+
+</div>

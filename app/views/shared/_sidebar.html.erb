@@ -1,5 +1,4 @@
 <% if params[:action] != 'home' %>
-
 	<div class="sidebar-wrapper col-lg-3">
 
 		<div class="sidebar-profile profile">
@@ -21,7 +20,7 @@
 				<i class="fas fa-qrcode"></i>
 			</div>
 			<div class="button">
-				<%= link_to "Mes tickets de caisse", edit_retailer_registration_path %>
+				<%= link_to "Mes tickets de caisse", receipts_index_path %>
 				<i class="fas fa-receipt"></i>
 			</div>
 			<div class="button">
