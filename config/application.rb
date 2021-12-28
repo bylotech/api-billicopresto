@@ -1,4 +1,6 @@
-  require_relative "boot"
+# frozen_string_literal: true
+
+require_relative "boot"
 
 require "rails"
 # Pick the frameworks you want:
@@ -32,9 +34,13 @@ module ApiBillicopresto
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
-    config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
+    config.i18n.load_path += Dir[Rails.root.join("my/locales/*.{rb,yml}")]
     config.i18n.default_locale = :fr
     config.i18n.fallbacks = [:en]
+
+    # set sidekiq as the back ground job thing
+    config.active_job.queue_adapter = :sidekiq
+    Redis.exists_returns_integer = false
 
     # Don't generate system test files.
     config.generators.system_tests = nil

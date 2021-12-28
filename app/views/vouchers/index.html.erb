@@ -16,15 +16,15 @@
                       <%= image_tag "grocery.svg", alt: "fb", class: "pb-3" %>
                     <% elsif voucher.product.kind == "Health and beauty" %>
                       <%= image_tag "shampoo.svg", alt: "hb", class: "pb-3" %>
-                    <% else %> 
+                    <% else %>
                       <%= image_tag "house.svg", alt: "hl", class: "pb-3" %>
-                    <% end %> 
+                    <% end %>
                   </div>
                   <div class="voucher-right p-3 d-flex flex-column justify-content-between">
                     <div class="date-voucher">
                       <p> <%= voucher.start_date.strftime("%d.%m.%Y") %> - <%= voucher.end_date.strftime("%d.%m.%Y") %></p>
                       <p> <strong><%= (voucher.end_date - Date.current).to_i %> jours restants</strong></p>
-                      
+
                     </div>
                     <p> <strong style="font-size: 16px;"> <%= "- 0,#{voucher.discount_cents} €" %> </strong> sur <span style="text-transform: uppercase;"> <%= voucher.product.name %> </span></p>
                   </div>
