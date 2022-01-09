@@ -4,11 +4,12 @@ module Retailers
   module Statistics
     class StatisticsController < ApplicationController
       before_action :authenticate_retailer!
+      
 
-      # /users_by_zipcode
+      # /retailers/statistics/users_by_zipcode
       def users_by_zipcode
         @data = UsersByZipcodeService.new(current_retailer).call!
-
+        
         render "retailers/statistics/users_by_zipcode"
       end
 
@@ -35,6 +36,11 @@ module Retailers
         @data = DailyProductSalesService.new(current_retailer, @product).call!
 
         render "retailers/statistics/daily_product_sales"
+      end
+
+      #/number_of_client
+      def number_of_client
+        
       end
 
       private
