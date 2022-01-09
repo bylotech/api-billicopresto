@@ -12,6 +12,11 @@ class Retailer < ApplicationRecord
   has_many :tills, dependent: :destroy
   has_many :receipts, through: :tills
   has_many :receipt_lines, through: :receipts
+  has_many :customers,
+           -> { distinct },
+           through: :receipts,
+           source: :user
+
   has_many :items, dependent: :destroy
   has_many :products, through: :items
   has_many :vouchers, class_name: "Vouchers::Voucher", dependent: :destroy
