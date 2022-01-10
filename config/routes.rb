@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       get "sales_by_users_value", to: "statistics#sales_by_users_value"
       get "sales_by_products_value", to: "statistics#sales_by_products_value"
       get "daily_product_sales/:id", to: "statistics#daily_product_sales"
+      get "number_of_client", to: "statistics#number_of_client"
     end
   end
 
@@ -34,8 +35,8 @@ Rails.application.routes.draw do
   #   render :builder_root
   # end
 
-  scope module: 'vouchers' do
-    get 'vouchers/filter', to: 'vouchers#filter', as: 'vouchers_filter'
+  scope module: "vouchers" do
+    get "vouchers/filter", to: "vouchers#filter", as: "vouchers_filter"
     resources :vouchers, only: [:index, :show, :new, :create]
   end
 

@@ -5,14 +5,23 @@ module Retailers
     # returns the number of client
     class NumberOfClientService
       LOCALS_DISTANCE_FROM_RETAILER = 1
+      TYPE_WHITELIST = %w[
+        by_age
+        by_localisation
+        by_gender
+      ].freeze
 
-      def initialize(retailer, kind)
+      def initialize(retailer, type)
         @retailer = retailer
-        @kind = kind
+        @type = type
       end
 
       def call!
         sanitized_data
+      end
+
+      def permitted_type?
+        TYPE_WHITELIST.include? @type
       end
 
       private
@@ -45,7 +54,7 @@ module Retailers
       end
 
       def data
-        @data ||= send(@kind)
+        @data ||= send(@type)
       end
 
       def sanitized_data
