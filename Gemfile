@@ -31,6 +31,9 @@ gem "faker", git: "https://github.com/faker-ruby/faker.git", branch: "master"
 
 gem "devise"
 
+# geocoder
+gem "geocoder", "~> 1.7", ">= 1.7.2"
+
 # money
 gem "money-rails", "~>1.12"
 
