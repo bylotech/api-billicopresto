@@ -1,3 +1,9 @@
 fr:
   cancan:
     access_denied: "Vous n'êtes pas authorisé à acceder à ce contenu"
+  errors:
+    controllers:
+      retailers:
+        statistics:
+          number_of_client:
+            bad_request: La valeur du parametre type est inconnue

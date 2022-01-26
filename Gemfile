@@ -31,6 +31,9 @@ gem "faker", git: "https://github.com/faker-ruby/faker.git", branch: "master"
 
 gem "devise"
 
+# geocoder
+gem "geocoder", "~> 1.7", ">= 1.7.2"
+
 # money
 gem "money-rails", "~>1.12"
 
@@ -63,6 +66,12 @@ gem "httparty", "~> 0.18.1"
 
 # chartkick
 gem "chartkick"
+
+# sidekiq
+gem "sidekiq", "~>6.0.0"
+
+# whenever
+gem "whenever", require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

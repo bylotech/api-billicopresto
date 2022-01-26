@@ -5,9 +5,15 @@ module Retailers
     class StatisticsController < ApplicationController
       before_action :authenticate_retailer!
 
+<<<<<<< HEAD
       # /users_by_zipcode
       def users_by_gender
         @data_zip = UsersByGenderService.new(current_retailer).call!
+=======
+      # /retailers/statistics/users_by_zipcode
+      def users_by_zipcode
+        @data = UsersByZipcodeService.new(current_retailer).call!
+>>>>>>> da4efda58afa002de8ea61871325e25ea50881d6
 
         render "retailers/statistics/users_by_gender"
       end
@@ -37,6 +43,20 @@ module Retailers
         render "retailers/statistics/daily_product_sales"
       end
 
+      # /retailers/statistics/number_of_client
+      def number_of_client
+        service = NumberOfClientService.new(current_retailer, number_of_client_params)
+
+        unless service.permitted_type?
+          raise ActionController::BadRequest.new,
+                I18n.t("errors.controllers.retailers.statistics.number_of_client.bad_request")
+        end
+
+        @data = service.call!
+
+        render "retailers/statistics/number_of_client"
+      end
+
       private
 
       def load_product
@@ -45,6 +65,10 @@ module Retailers
 
       def product_params
         params.permit(:id)
+      end
+
+      def number_of_client_params
+        params.require(:type)
       end
     end
   end
