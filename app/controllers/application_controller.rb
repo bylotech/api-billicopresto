@@ -15,6 +15,14 @@ class ApplicationController < ActionController::Base
     raise ActionController::RoutingError, "Not Found"
   end
 
+  def authenticate!
+    if current_user == current_retailer
+      :authenticate_retailer! 
+    else 
+      :authenticate_user! 
+    end
+  end
+
   protected
 
   def configure_permitted_parameters

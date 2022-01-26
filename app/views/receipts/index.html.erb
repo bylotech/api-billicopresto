@@ -1,26 +1,45 @@
-<% if @receipts_ordered.length == 0 %>
+<% if current_user %>
+	<% if @receipts_ordered.length == 0 %>
 
-	<p class="p-3 text-center" style="color: grey; border-bottom: 1px solid lightgrey">You have no ticket yet</p>
+		<p class="p-3 text-center" style="color: grey; border-bottom: 1px solid lightgrey">You have no ticket yet</p>
 
-<% else %>
-	<% @receipts_ordered.sort.each do |year, receipts| %>
-		<% @receipts_ordered_month.sort.each do |month, receipts| %>
-			<h3 class="date"><%= month.strftime('%B').upcase %> <%= year.strftime('%Y').upcase %></h3>
-			<div class="mb-5">
-				<% @receipts.each do |receipt| %>
-				  	<%= link_to receiptshow_path(receipt) do %>
-				  		<div class="card receipt-info">
-				  			<p> <%= receipt.created_at.strftime("%d.%m.%Y") %></p>
-				  			<div class="d-flex receipt-middle-line">
-				  				<p id="retailer"><%= receipt.till.retailer.name.upcase %>, <%= receipt.till.retailer.city.upcase %></p>
-				  				<p id="price"><%= receipt.amount_including_taxes.amount %> €</p>
-				  				<i class="fas fa-chevron-right"></i>
-				  			</div>
-				  			<p>n°<%= receipt.reference %></p>
-				  		</div>
-				  	<% end %>
-			  <% end %>
-			</div>
-		<% end %>  
+	<% else %>
+		<% @receipts_ordered.sort.each do |year, receipts| %>
+			<% @receipts_ordered_month.sort.each do |month, receipts| %>
+				<h3 class="date"><%= month.strftime('%B').upcase %> <%= year.strftime('%Y').upcase %></h3>
+				<div class="mb-5">
+					<% @receipts.each do |receipt| %>
+					  	<%= link_to receiptshow_path(receipt) do %>
+					  		<div class="card receipt-info">
+					  			<p> <%= receipt.created_at.strftime("%d.%m.%Y") %></p>
+					  			<div class="d-flex receipt-middle-line">
+					  				<p id="retailer"><%= receipt.till.retailer.name.upcase %>, <%= receipt.till.retailer.city.upcase %></p>
+					  				<p id="price"><%= receipt.amount_including_taxes.amount %> €</p>
+					  				<i class="fas fa-chevron-right"></i>
+					  			</div>
+					  			<p>n°<%= receipt.reference %></p>
+					  		</div>
+					  	<% end %>
+				  <% end %>
+				</div>
+			<% end %>  
+		<% end %>
 	<% end %>
+<% else %>
+	<div class="home-organizer">
+		<div class="retailler-vouchers-wrapper mx-5 mb-5 pb-5">
+		<% @receipts.each do |receipt| %>
+		  	<%= link_to receiptshow_path(receipt) do %>
+		  		<div class="card receipt-info">
+		  			<p> <%= receipt.created_at.strftime("%d.%m.%Y") %></p>
+		  			<div class="d-flex receipt-middle-line">
+		  				<p id="retailer">N°<%= receipt.reference.upcase %></p>
+		  				<p id="price"><%= receipt.amount_including_taxes.amount %> €</p>
+		  				<i class="fas fa-chevron-right"></i>
+		  			</div>
+		  		</div>
+		  	<% end %>
+	  	<% end %>
+	  	</div>
+	</div>
 <% end %>

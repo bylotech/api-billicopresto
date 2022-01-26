@@ -1,16 +1,45 @@
-<h1>Retailers::Retailer#statistics</h1>
-<p>Find me in app/views/retailers/retailer/statistics.html.erb</p>
-<%= pie_chart @statistics %>
+<div class="home-organizer">
 
-<div class="button">
-	<%= link_to "users_value",  retailers_statistics_users_by_zipcode_path %>
-	<i class="fas fa-chart-line"></i>
-</div>
-<div class="button">
-	<%= link_to "users_value", retailers_statistics_sales_by_users_value_path %>
-	<i class="fas fa-chart-line"></i>
-</div>
-<div class="button">
-	<%= link_to "users_value", retailers_statistics_sales_by_products_value_path %>
-	<i class="fas fa-chart-line"></i>
+		<div class="retailler-home-wrapper mx-5">
+			<div class="retailler-home-info text-center align-middle">
+				<p class="mt-5 mb-5"> <i class="fas fa-user-tag"></i> </p> 
+				<p> Connaître ma clientèle </p>
+				<p class="description-home-card pt-3 pb-5 px-5"> Etablir un profiling client en fonction de l'age de...</p>
+				<%= link_to retailers_statistics_users_by_gender_path do %>
+					<p class="see-more"> Voir plus <i class="fas fa-chevron-right"></i> </p>
+				<% end %>
+			</div>
+			<div class="retailler-home-info text-center align-middle">
+				<p class="mt-5 mb-5"> <i class="fas fa-bullseye"></i> </p> 
+				<p> Cibler ma clientèle </p>
+				<p class="description-home-card pt-3 pb-5 px-5"> Consultez vos tickets de caisses actifs (voir Préférences) et ayez une vue d'ensemble sur la consommation de vos clients. </p>
+				<%= link_to retailers_statistics_users_by_gender_path do %>
+					<p class="see-more"> Voir plus <i class="fas fa-chevron-right"></i> </p>
+				<% end %>
+			</div>
+			<div class="retailler-home-info text-center align-middle">
+				<p class="mt-5 mb-5"> <i class="fas fa-shopping-basket"></i> </p> 
+				<p> Comprendre mes ventes </p>
+				<p class="description-home-card pt-3 pb-5 px-5"> Proposez à votre clientèle des bons de réduction presonnalisés et consultez les statistiques des précédentes promotions.</p>
+				<%= link_to vouchers_path do %>
+					<p class="see-more"> Voir plus <i class="fas fa-chevron-right"></i> </p>
+				<% end %>
+			</div>
+		</div>
+		<%#= pie_chart @statistics %>
+
+
+<!-- 		<div class="button">
+			<%= link_to "users_value",  retailers_statistics_users_by_gender_path %>
+			<i class="fas fa-chart-line"></i>
+		</div>
+		<div class="button">
+			<%= link_to "users_value", retailers_statistics_sales_by_users_value_path %>
+			<i class="fas fa-chart-line"></i>
+		</div>
+		<div class="button">
+			<%= link_to "users_value", retailers_statistics_sales_by_products_value_path %>
+			<i class="fas fa-chart-line"></i>
+		</div> -->
+
 </div>

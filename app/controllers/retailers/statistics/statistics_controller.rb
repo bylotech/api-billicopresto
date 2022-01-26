@@ -5,16 +5,22 @@ module Retailers
     class StatisticsController < ApplicationController
       before_action :authenticate_retailer!
 
+<<<<<<< HEAD
+      # /users_by_zipcode
+      def users_by_gender
+        @data_zip = UsersByGenderService.new(current_retailer).call!
+=======
       # /retailers/statistics/users_by_zipcode
       def users_by_zipcode
         @data = UsersByZipcodeService.new(current_retailer).call!
+>>>>>>> da4efda58afa002de8ea61871325e25ea50881d6
 
-        render "retailers/statistics/users_by_zipcode"
+        render "retailers/statistics/users_by_gender"
       end
 
       # /sales_by_users_value
       def sales_by_users_value
-        @data = SalesByUsersValueService.new(current_retailer).call!
+        @data_value = SalesByUsersValueService.new(current_retailer).call!
 
         render "retailers/statistics/sales_by_users_value"
       end

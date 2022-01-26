@@ -1,0 +1,33 @@
+<div class="home-organizer">
+
+		<div class="retailler-home-wrapper mx-5">
+			<div class="retailler-stat-info text-center align-middle">
+				<%= pie_chart @data_zip, colors: ["rgba(27, 57, 208, 1)", "rgba(27, 57, 208, 0.8)"], donut: true, legend: false, height: "200px" %>
+				<p class="pt-5"> Ma clientèle en <strong> genre </strong></p>
+			</div>
+			<div class="retailler-stat-info text-center align-middle">
+				<%= bar_chart @data_zip, colors: ["rgba(27, 57, 208, 1)", "rgba(27, 57, 208, 0.8)"], legend: false, height: "200px" %>
+				<p class="pt-5"> Ma clientèle en <strong> âge </strong> </p>
+			</div>
+			<div class="retailler-stat-info text-center align-middle">
+				<%= pie_chart @data_zip, colors: ["rgba(27, 57, 208, 1)", "rgba(27, 57, 208, 0.8)"], donut: true, legend: false, height: "200px" %>
+				<p class="pt-5"> Ma clientèle en <strong> proximité </strong> </p>
+			</div>
+		</div>
+		<%#= pie_chart @statistics %>
+
+
+<!-- 		<div class="button">
+			<%= link_to "users_value",  retailers_statistics_users_by_gender_path %>
+			<i class="fas fa-chart-line"></i>
+		</div>
+		<div class="button">
+			<%= link_to "users_value", retailers_statistics_sales_by_users_value_path %>
+			<i class="fas fa-chart-line"></i>
+		</div>
+		<div class="button">
+			<%= link_to "users_value", retailers_statistics_sales_by_products_value_path %>
+			<i class="fas fa-chart-line"></i>
+		</div> -->
+
+</div>

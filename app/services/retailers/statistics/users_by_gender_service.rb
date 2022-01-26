@@ -3,7 +3,7 @@
 module Retailers
   module Statistics
     # returns the number of users by zipcode
-    class UsersByZipcodeService
+    class UsersByGenderService
       def initialize(retailer)
         @retailer = retailer
       end
@@ -12,7 +12,7 @@ module Retailers
         User.joins(receipts: :till)
             .where(tills: {retailer: @retailer})
             .distinct
-            .group(:zip_code)
+            .group(:gender)
             .order(:count_id)
             .count
       end
